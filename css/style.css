@@ -88,6 +88,43 @@
   }
 }
 
+/* ---------- Page enter/leave transition (matches the original SPA's
+   page-enter-active 0.6s / page-leave-active 0.3s) ---------- */
+
+.page-shell {
+  opacity: 0;
+  animation: page-fade-in 0.6s cubic-bezier(0.4, 0.4, 0, 1) forwards;
+}
+
+.page-shell.is-leaving {
+  animation: page-fade-out 0.3s cubic-bezier(0.4, 0.4, 0, 1) forwards;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-shell {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

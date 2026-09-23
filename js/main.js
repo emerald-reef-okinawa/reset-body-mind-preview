@@ -59,3 +59,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const shell = document.querySelector("[data-page-shell]");
+  if (!shell) return;
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[href]");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    const isInternalPage =
+      href &&
+      !href.startsWith("http") &&
+      !href.startsWith("#") &&
+      !href.startsWith("mailto:") &&
+      !href.startsWith("tel:") &&
+      link.target !== "_blank";
+
+    if (!isInternalPage) return;
+
+    e.preventDefault();
+    shell.classList.add("is-leaving");
+    window.setTimeout(() => {
+      window.location.href = href;
+    }, 280);
+  });
+});
