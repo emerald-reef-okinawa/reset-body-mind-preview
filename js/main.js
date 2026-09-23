@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".hero");
+  const heroCopy = document.querySelector(".hero__copy");
+  if (hero && heroCopy) {
+    requestAnimationFrame(() => {
+      hero.classList.add("is-visible");
+      heroCopy.classList.add("is-visible");
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector("[data-menu-toggle]");
   const drawer = document.querySelector("[data-nav-drawer]");
   const close = document.querySelector("[data-menu-close]");
