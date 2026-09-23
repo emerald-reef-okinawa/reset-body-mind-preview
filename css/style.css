@@ -615,6 +615,7 @@ h1, h2, h3, p {
   font-weight: 700;
   font-size: clamp(1.5rem, 3.2vw, 2rem);
   letter-spacing: 0.04em;
+  color: var(--color-sage);
 }
 
 .section__lead {
