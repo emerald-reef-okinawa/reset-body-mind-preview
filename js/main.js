@@ -22,6 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(".reveal");
+  if (!reveals.length) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+  );
+
+  reveals.forEach((el) => io.observe(el));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll("[data-price-tab]");
   if (!tabs.length) return;
 
@@ -31,7 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       tabs.forEach((t) => t.classList.toggle("is-active", t === tab));
       document.querySelectorAll("[data-price-panel]").forEach((panel) => {
-        panel.classList.toggle("is-active", panel.getAttribute("data-price-panel") === target);
+        const isTarget = panel.getAttribute("data-price-panel") === target;
+        panel.classList.toggle("is-active", isTarget);
+        if (isTarget) {
+          panel.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+        }
       });
     });
   });
