@@ -8,9 +8,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=PT+Sans:wght@400;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1790174529">
+<link rel="stylesheet" href="css/style.css?v=1790175063">
 </head>
 <body>
+
+<div class="intro-overlay" data-intro-overlay>
+  <p class="intro-overlay__logo">RE-SET<br>Body&amp;Mind</p>
+  <div class="intro-overlay__line"></div>
+</div>
+<script>
+(function () {
+  try {
+    if (sessionStorage.getItem('rbmIntroPlayed')) {
+      document.currentScript.previousElementSibling.remove();
+    } else {
+      sessionStorage.setItem('rbmIntroPlayed', '1');
+    }
+  } catch (e) {}
+})();
+</script>
 
 <header class="site-header">
   <a href="index.html" class="site-header__logo">広尾西麻布　骨格矯正ボディメイク</a>
@@ -190,6 +206,6 @@
 
 <a href="https://lin.ee/Qd412Lj" class="floating-cta" target="_blank" rel="noopener">体験予約はこちら</a>
 
-<script src="js/main.js?v=1790174529"></script>
+<script src="js/main.js?v=1790175063"></script>
 </body>
 </html>
