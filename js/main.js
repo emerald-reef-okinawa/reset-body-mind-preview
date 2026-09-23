@@ -52,22 +52,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(".section");
-  if (!sections.length) return;
+  // The growing bar sits at the bottom edge of each section (via ::after),
+  // so it needs to trigger when that bottom edge scrolls into view — not
+  // when the (often much taller) section first starts appearing at the
+  // top. An IntersectionObserver on the whole section fires too early for
+  // tall sections, so this tracks each section's own bottom edge instead.
+  const pending = new Set(document.querySelectorAll(".section"));
+  if (!pending.size) return;
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("bar-in");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
+  const check = () => {
+    const vh = window.innerHeight;
+    pending.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom <= vh && rect.bottom > 0) {
+        el.classList.add("bar-in");
+        pending.delete(el);
+      }
+    });
+    if (!pending.size) {
+      window.removeEventListener("scroll", check);
+    }
+  };
 
-  sections.forEach((el) => io.observe(el));
+  window.addEventListener("scroll", check, { passive: true });
+  check();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
