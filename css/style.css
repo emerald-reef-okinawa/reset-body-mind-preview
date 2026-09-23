@@ -372,6 +372,7 @@ h1, h2, h3, p {
 .results-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
   gap: 8px;
 }
 
