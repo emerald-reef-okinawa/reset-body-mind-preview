@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: center;
   background: #111;
-  animation: intro-fade-out 500ms ease 1200ms forwards;
+  animation: intro-fade-out 700ms ease 2100ms forwards;
 }
 
 .intro-overlay__logo {
@@ -43,7 +43,7 @@
   margin: 0;
   transform: scale(2.2);
   opacity: 0;
-  animation: intro-logo-zoom 800ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards;
+  animation: intro-logo-zoom 1300ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
 }
 
 .intro-overlay__line {
@@ -51,7 +51,7 @@
   height: 2px;
   background: var(--color-sage);
   margin-top: 22px;
-  animation: intro-line-grow 300ms ease 950ms forwards;
+  animation: intro-line-grow 450ms ease 1550ms forwards;
 }
 
 @keyframes intro-logo-zoom {
@@ -462,7 +462,7 @@ h1, h2, h3, p {
 }
 
 .hero.is-visible .hero__bar {
-  width: 100px;
+  width: 160px;
 }
 
 .hero__side-link {
@@ -578,12 +578,12 @@ h1, h2, h3, p {
 }
 
 .section.bar-in:not(:last-child)::after {
-  width: 48px;
+  width: 72px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .section:not(:last-child)::after {
-    width: 48px;
+    width: 72px;
     transition: none;
   }
 }
