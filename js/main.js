@@ -52,6 +52,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".section");
+  if (!sections.length) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("bar-in");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  sections.forEach((el) => io.observe(el));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll("[data-price-tab]");
   if (!tabs.length) return;
 
