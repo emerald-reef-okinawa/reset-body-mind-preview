@@ -391,12 +391,27 @@ h1, h2, h3, p {
 
 /* ---------- Hero ---------- */
 
+/* Proportions taken from the original site: a 696px-tall band inset from the
+   page edges, first photo 618px wide, second photo taking the remainder
+   (max total width 1523px). On phones the band is wider than the screen and
+   the photos bleed off both edges. */
+main {
+  overflow-x: clip;
+}
+
 .hero {
   position: relative;
-  overflow-x: clip;
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: 618px minmax(0, 1fr);
+  width: min(100% - 62px, 1523px);
+  margin: 0 auto;
   height: 696px;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 2fr 1fr;
+  }
 }
 
 /* The gap under the hero matches the original site (~90px to the heading). */
@@ -444,34 +459,31 @@ h1, h2, h3, p {
   z-index: 0;
 }
 
-/* On wide screens the hero is taller than the viewport, so the copy is
-   centred within the first screen (not the whole hero) to keep the title
-   and the reserve button above the fold. */
 .hero__copy {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: min(100%, calc(100svh - var(--header-height)));
+  inset: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
   justify-content: center;
-  padding: 0 6%;
+  align-content: center;
+  padding: 0 24px;
 }
 
 .hero__title {
   font-family: var(--font-hero);
   font-weight: 400;
   color: #fff;
-  font-size: clamp(2.5rem, min(1.9rem + 6vw, 13vh), 7rem);
+  font-size: clamp(3rem, 9.4vw, 7.5rem);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
 
 .hero__line {
   display: block;
+}
+
+.hero__line:nth-child(2) {
+  padding-left: 0.72em;
 }
 
 .hero__line--shadow {
@@ -1666,7 +1678,21 @@ h1, h2, h3, p {
 
 @media (max-width: 720px) {
   .hero {
+    width: 131.5%;
+    margin-left: -15.75%;
+    grid-template-columns: 2fr 1fr;
     height: 590px;
+  }
+  .hero__copy {
+    padding: 0 15% 0 17%;
+    justify-content: start;
+  }
+  .hero__title {
+    font-size: clamp(2.5rem, 12.3vw, 3.5rem);
+    line-height: 1.68;
+  }
+  .hero__line:nth-child(2) {
+    padding-left: 0;
   }
   .hero__cta {
     margin-top: 32px;
