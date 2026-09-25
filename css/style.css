@@ -393,6 +393,7 @@ h1, h2, h3, p {
 
 .hero {
   position: relative;
+  overflow-x: clip;
   display: grid;
   grid-template-columns: 7fr 3fr;
   min-height: 70vh;
@@ -438,12 +439,20 @@ h1, h2, h3, p {
   z-index: 0;
 }
 
+/* On wide screens the hero is taller than the viewport, so the copy is
+   centred within the first screen (not the whole hero) to keep the title
+   and the reserve button above the fold. */
 .hero__copy {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(100%, calc(100svh - var(--header-height)));
   z-index: 2;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   padding: 0 6%;
 }
 
@@ -451,7 +460,7 @@ h1, h2, h3, p {
   font-family: var(--font-hero);
   font-weight: 400;
   color: #fff;
-  font-size: clamp(2.5rem, 1.9rem + 6vw, 7rem);
+  font-size: clamp(2.5rem, min(1.9rem + 6vw, 13vh), 7rem);
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
@@ -511,17 +520,17 @@ h1, h2, h3, p {
 .hero__bar {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  width: 0;
-  height: 1px;
+  top: 100%;
+  width: 1px;
+  height: 0;
   background: #111;
   transform: translateX(-50%);
-  transition: width 1.2s cubic-bezier(0.4, 0.4, 0, 1) 0.4s;
+  transition: height 1.2s cubic-bezier(0.4, 0.4, 0, 1) 0.4s;
   z-index: 2;
 }
 
-.hero.is-visible .hero__bar {
-  width: 220px;
+.hero.bar-in .hero__bar {
+  height: 64px;
 }
 
 .hero__side-link {
@@ -627,22 +636,26 @@ h1, h2, h3, p {
 .section:not(:last-child)::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  top: calc(100% - 76px);
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 2px;
+  width: 2px;
+  height: 0;
   background: var(--color-sage);
-  transition: width 1.2s cubic-bezier(0.4, 0.4, 0, 1) 0.4s;
+  transition: height 1.2s cubic-bezier(0.4, 0.4, 0, 1) 0.4s;
 }
 
 .section.bar-in:not(:last-child)::after {
-  width: 96px;
+  height: 56px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .section:not(:last-child)::after {
-    width: 96px;
+    height: 56px;
+    transition: none;
+  }
+  .hero__bar {
+    height: 64px;
     transition: none;
   }
 }
@@ -1564,10 +1577,7 @@ h1, h2, h3, p {
 /* ---------- Hero CTA ---------- */
 
 .hero__cta {
-  position: absolute;
-  left: 6%;
-  bottom: 12%;
-  z-index: 2;
+  margin-top: 40px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -1586,6 +1596,7 @@ h1, h2, h3, p {
   font-size: 13px;
   letter-spacing: 0.1em;
   line-height: 1.5;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
 }
 
 .hero__cta-label span {
@@ -1648,11 +1659,8 @@ h1, h2, h3, p {
   .hero {
     min-height: 78vh;
   }
-  .hero__copy {
-    padding-bottom: 96px;
-  }
   .hero__cta {
-    bottom: 40px;
+    margin-top: 32px;
     gap: 16px;
   }
   .hero__cta-button {

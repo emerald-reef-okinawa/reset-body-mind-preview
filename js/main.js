@@ -57,14 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // when the (often much taller) section first starts appearing at the
   // top. An IntersectionObserver on the whole section fires too early for
   // tall sections, so this tracks each section's own bottom edge instead.
-  const pending = new Set(document.querySelectorAll(".section"));
+  const pending = new Set(document.querySelectorAll(".hero, .section"));
   if (!pending.size) return;
 
   const check = () => {
     const vh = window.innerHeight;
     pending.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.bottom <= vh && rect.bottom > 0) {
+      // The hero bar hangs below the hero, so wait until it fits on screen.
+      const reach = el.classList.contains("hero") ? 64 : 0;
+      if (rect.bottom + reach <= vh && rect.bottom > 0) {
         el.classList.add("bar-in");
         pending.delete(el);
       }
