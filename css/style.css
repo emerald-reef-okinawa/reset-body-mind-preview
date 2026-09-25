@@ -392,7 +392,7 @@ h1, h2, h3, p {
 /* ---------- Hero ---------- */
 
 /* A 696px-tall band (as on the original site), photos running edge to edge
-   in a 2:3 split. On phones the band is wider than the screen and the photos
+   in an even split. On phones the band is wider than the screen and the photos
    bleed off both edges. */
 main {
   overflow-x: clip;
@@ -401,17 +401,13 @@ main {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
   margin: 0 auto;
   height: 696px;
 }
 
-@media (max-width: 1000px) {
-  .hero {
-    grid-template-columns: 2fr 1fr;
-  }
-}
+
 
 /* The gap under the hero matches the original site (~90px to the heading). */
 .hero + .section {
