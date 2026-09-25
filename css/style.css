@@ -391,10 +391,9 @@ h1, h2, h3, p {
 
 /* ---------- Hero ---------- */
 
-/* Proportions taken from the original site: a 696px-tall band inset from the
-   page edges, first photo 618px wide, second photo taking the remainder
-   (max total width 1523px). On phones the band is wider than the screen and
-   the photos bleed off both edges. */
+/* A 696px-tall band (as on the original site), photos running edge to edge
+   in a 2:3 split. On phones the band is wider than the screen and the photos
+   bleed off both edges. */
 main {
   overflow-x: clip;
 }
@@ -402,8 +401,8 @@ main {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: 618px minmax(0, 1fr);
-  width: min(100% - 62px, 1523px);
+  grid-template-columns: 2fr 3fr;
+  width: 100%;
   margin: 0 auto;
   height: 696px;
 }
@@ -480,10 +479,6 @@ main {
 
 .hero__line {
   display: block;
-}
-
-.hero__line:nth-child(2) {
-  padding-left: 0.72em;
 }
 
 .hero__line--shadow {
@@ -1690,9 +1685,6 @@ main {
   .hero__title {
     font-size: clamp(2.5rem, 12.3vw, 3.5rem);
     line-height: 1.68;
-  }
-  .hero__line:nth-child(2) {
-    padding-left: 0;
   }
   .hero__cta {
     margin-top: 32px;
