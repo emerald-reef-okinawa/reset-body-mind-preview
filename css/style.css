@@ -1323,14 +1323,15 @@ h1, h2, h3, p {
 }
 
 .instagram-feed__grid iframe {
+  position: relative !important;
   max-width: 100% !important;
   width: 100% !important;
 }
 
 @media (max-width: 720px) {
   .instagram-feed__grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: min(400px, 100%);
     margin: 0 auto;
   }
 }
