@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pending.forEach((el) => {
       const rect = el.getBoundingClientRect();
       // The hero bar hangs below the hero, so wait until it fits on screen.
-      const reach = el.classList.contains("hero") ? 64 : 0;
+      const reach = el.classList.contains("hero") ? 40 : 0;
       if (rect.bottom + reach <= vh && rect.bottom > 0) {
         el.classList.add("bar-in");
         pending.delete(el);

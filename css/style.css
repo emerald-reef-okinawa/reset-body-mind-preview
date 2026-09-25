@@ -396,7 +396,12 @@ h1, h2, h3, p {
   overflow-x: clip;
   display: grid;
   grid-template-columns: 7fr 3fr;
-  min-height: 70vh;
+  height: 696px;
+}
+
+/* The gap under the hero matches the original site (~90px to the heading). */
+.hero + .section {
+  padding-top: 72px;
 }
 
 .hero__panel {
@@ -530,30 +535,7 @@ h1, h2, h3, p {
 }
 
 .hero.bar-in .hero__bar {
-  height: 64px;
-}
-
-.hero__side-link {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  transform-origin: right center;
-  background: #111;
-  color: #fff;
-  padding: 14px 22px;
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  z-index: 2;
-}
-
-@media (max-width: 720px) {
-  .hero {
-    min-height: 60vh;
-  }
-  .hero__side-link {
-    display: none;
-  }
+  height: 40px;
 }
 
 /* ---------- Page header banner (interior pages) ---------- */
@@ -655,7 +637,7 @@ h1, h2, h3, p {
     transition: none;
   }
   .hero__bar {
-    height: 64px;
+    height: 40px;
     transition: none;
   }
 }
@@ -1387,17 +1369,44 @@ h1, h2, h3, p {
   align-items: start;
 }
 
-.instagram-media {
-  min-width: 0 !important;
-  min-height: 340px;
-  background: #fafafa;
-  border: 1px solid var(--color-line) !important;
+.ig-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: #fff;
 }
 
-.instagram-feed__grid iframe {
-  position: relative !important;
-  max-width: 100% !important;
-  width: 100% !important;
+.ig-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0.4, 0, 1);
+}
+
+.ig-card:hover img {
+  transform: scale(1.04);
+}
+
+.ig-card__label {
+  display: block;
+  padding: 14px 16px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.ig-card__label::after {
+  content: "→";
+  margin-left: 8px;
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.ig-card:hover .ig-card__label::after {
+  transform: translateX(4px);
 }
 
 @media (max-width: 720px) {
@@ -1657,7 +1666,7 @@ h1, h2, h3, p {
 
 @media (max-width: 720px) {
   .hero {
-    min-height: 78vh;
+    height: 590px;
   }
   .hero__cta {
     margin-top: 32px;
@@ -1766,24 +1775,21 @@ h1, h2, h3, p {
   line-height: 2;
 }
 
+.voice-card figcaption span {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
 .voice-card figcaption {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px solid var(--color-line);
   font-size: 12px;
   letter-spacing: 0.08em;
-  color: var(--color-muted);
-}
-
-.voice-card__sample {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 2px 8px;
-  border: 1px dashed var(--color-muted);
-  font-family: var(--font-en);
-  font-size: 10px;
-  letter-spacing: 0.2em;
   color: var(--color-muted);
 }
 
