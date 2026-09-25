@@ -124,3 +124,78 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 280);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count-up");
+  if (!counters.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const render = (el, value) => {
+    const decimals = Number(el.dataset.decimals || 0);
+    el.textContent = value.toFixed(decimals);
+  };
+
+  const run = (el) => {
+    const target = Number(el.dataset.count);
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      render(el, target * eased);
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        run(entry.target);
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  counters.forEach((el) => {
+    render(el, 0);
+    io.observe(el);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const items = [...document.querySelectorAll("[data-parallax]")];
+  if (!items.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  // Each image is scaled up in CSS, so it can drift by up to ±(scale - 1) / 2
+  // of its height without exposing the edges of its clipping parent.
+  const RANGE = 0.07;
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    items.forEach((img) => {
+      const box = img.parentElement.getBoundingClientRect();
+      if (box.bottom < 0 || box.top > vh) return;
+      // -1 when the box is entering at the bottom, +1 when it leaves at the top.
+      const progress = (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2);
+      img.style.setProperty("--py", `${(-progress * RANGE * box.height).toFixed(1)}px`);
+    });
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+});
