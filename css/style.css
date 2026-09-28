@@ -212,13 +212,13 @@ h1, h2, h3, p {
 
 .site-header__logo img {
   display: block;
-  height: 30px;
+  height: 38px;
   width: auto;
 }
 
 @media (max-width: 480px) {
   .site-header__logo img {
-    height: 24px;
+    height: 30px;
   }
 }
 
@@ -477,7 +477,7 @@ main {
 
 .hero__logo {
   display: block;
-  width: clamp(160px, 20vw, 260px);
+  width: clamp(190px, 24vw, 320px);
   height: auto;
   border-radius: 50%;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
@@ -1293,7 +1293,7 @@ main {
 /* ---------- Floating trial-booking CTA (mobile) ---------- */
 
 .floating-cta {
-  display: none;
+  display: block;
   position: fixed;
   left: 0;
   right: 0;
@@ -1328,13 +1328,8 @@ main {
   transform: translateX(3px);
 }
 
-@media (max-width: 720px) {
-  .floating-cta {
-    display: block;
-  }
-  body {
-    padding-bottom: 64px;
-  }
+body {
+  padding-bottom: 64px;
 }
 
 /* ---------- Instagram feed ---------- */
@@ -1563,7 +1558,7 @@ main {
 /* ---------- Hero CTA ---------- */
 
 .hero__cta {
-  margin-top: 40px;
+  margin-top: 72px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -1579,10 +1574,14 @@ main {
 }
 
 .hero__cta-label {
+  padding: 12px 22px 12px 20px;
+  background: rgba(20, 56, 58, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 999px;
   font-size: 13px;
   letter-spacing: 0.1em;
   line-height: 1.5;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
 }
 
 .hero__cta-label span {
@@ -1636,11 +1635,6 @@ main {
   width: 40px;
 }
 
-.hero__cta-label {
-  padding-left: 24px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-}
-
 @media (max-width: 720px) {
   .hero {
     width: 131.5%;
@@ -1649,10 +1643,10 @@ main {
     height: 590px;
   }
   .hero__logo {
-    width: clamp(120px, 34vw, 180px);
+    width: clamp(140px, 38vw, 210px);
   }
   .hero__cta {
-    margin-top: 32px;
+    margin-top: 44px;
     gap: 16px;
   }
   .hero__cta-button {
@@ -1665,7 +1659,7 @@ main {
     width: 16px;
   }
   .hero__cta-label {
-    padding-left: 16px;
+    padding: 10px 16px 10px 14px;
     font-size: 12px;
   }
   .hero__cta-label strong {
