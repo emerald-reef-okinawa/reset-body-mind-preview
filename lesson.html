@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=Playfair+Display:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1790590712">
+<link rel="stylesheet" href="css/style.css?v=1790603486">
 </head>
 <body>
 
@@ -48,7 +48,6 @@
     <ul class="nav-drawer__list">
       <li><a href="index.html">HOME</a></li>
       <li><a href="plan.html">PRICE</a></li>
-      <li><a href="flow.html">FLOW</a></li>
       <li><a href="lesson.html" class="is-current">LESSON</a></li>
       <li><a href="online-lesson.html">ONLINE LESSON</a></li>
       <li><a href="access.html">ACCESS</a></li>
@@ -144,22 +143,57 @@
 
   <section class="section">
     <div class="container">
-      <p class="section__eyebrow">Membership</p>
-      <h2 class="section__title">入会金</h2>
-      <table class="info-table reveal">
-        <tr><th>体験料</th><td>5,500円</td></tr>
-        <tr><th>入会金</th><td>20,000円</td></tr>
-      </table>
-      <ul class="note-list">
-        <li>※体験後、ご来店時にご入会していただいた方は10,000円になります</li>
-        <li>※体験後、当日中にご入会していただいた方は15,000円になります</li>
-        <li>※ご入会は必須となります</li>
-        <li>※表示価格は全て税込です</li>
-      </ul>
+      <p class="section__eyebrow">TRIAL LESSON</p>
+      <h2 class="section__title">体験レッスンの流れ</h2>
+
+      <div class="flow-steps reveal">
+        <div class="flow-step">
+          <span class="flow-step__num">01</span>
+          <p class="flow-step__label">ご来店・受付</p>
+        </div>
+        <span class="flow-step__arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <span class="flow-step__num">02</span>
+          <p class="flow-step__label">お悩みや目的の<br>ヒアリング</p>
+        </div>
+        <span class="flow-step__arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <span class="flow-step__num">03</span>
+          <p class="flow-step__label">姿勢・身体の<br>チェック</p>
+        </div>
+        <span class="flow-step__arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <span class="flow-step__num">04</span>
+          <p class="flow-step__label">レッスン</p>
+        </div>
+        <span class="flow-step__arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <span class="flow-step__num">05</span>
+          <p class="flow-step__label">入会プランの<br>ご相談</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section section--muted">
+    <div class="container">
+      <p class="section__eyebrow">AFTER JOINING</p>
+      <h2 class="section__title">入会後のレッスンの流れ</h2>
+
+      <div class="join-flow">
+        <div class="join-flow__card reveal">
+          <p class="join-flow__badge">初回</p>
+          <p class="join-flow__text">レッスン前にBefore写真を撮影するため、15分前を目安にご来店いただきます。</p>
+        </div>
+        <div class="join-flow__card reveal" style="--reveal-delay:0.1s;">
+          <p class="join-flow__badge">2回目以降</p>
+          <p class="join-flow__text">受付でカルテを受け取り、レッスンへ。終了後はそのままお帰りいただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <p class="section__eyebrow">Recommendation</p>
       <h2 class="section__title">トレーニングの推奨回数</h2>
@@ -185,6 +219,18 @@
     </div>
   </section>
 
+  <section class="section section--dark">
+    <div class="container cta reveal">
+      <p class="section__eyebrow">TRIAL LESSON</p>
+      <h2 class="section__title" style="margin-bottom:24px;">体験レッスンのご予約</h2>
+      <p class="section__lead" style="margin-bottom:0;">
+        体験レッスンのご予約・ご相談は公式LINEより承っております。<br>
+        お気軽にご連絡ください。
+      </p>
+      <a href="https://lin.ee/Qd412Lj" class="cta__button" target="_blank" rel="noopener">公式LINEへ</a>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -201,7 +247,6 @@
       <nav class="site-footer__nav">
         <a href="index.html">HOME</a>
         <a href="plan.html">PRICE</a>
-        <a href="flow.html">FLOW</a>
         <a href="lesson.html">LESSON</a>
         <a href="online-lesson.html">ONLINE LESSON</a>
         <a href="access.html">ACCESS</a>
@@ -230,6 +275,6 @@
 
 </div>
 
-<script src="js/main.js?v=1790590712"></script>
+<script src="js/main.js?v=1790603486"></script>
 </body>
 </html>
