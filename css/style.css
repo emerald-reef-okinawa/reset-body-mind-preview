@@ -1702,8 +1702,8 @@ body {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  max-width: 880px;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 520px;
   margin: 0 auto 56px;
   border-top: 1px solid var(--color-line);
   border-bottom: 1px solid var(--color-line);
