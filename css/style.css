@@ -2399,6 +2399,15 @@ body {
   color: #fff;
 }
 
+.intro-lead__title {
+  font-family: var(--font-hero);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
 .section--dark .section__eyebrow {
   color: #8fe0a6;
 }
