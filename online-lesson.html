@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=Playfair+Display:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1790610425">
+<link rel="stylesheet" href="css/style.css?v=1790611136">
 </head>
 <body>
 
@@ -59,26 +59,31 @@
 
 <main>
 
-  <section class="page-header">
-    <img src="assets/lesson-detail.webp" alt="自宅で受けられるオンラインレッスンの様子" class="page-header__img" data-parallax>
-    <div class="page-header__copy">
-      <p class="page-header__eyebrow">Online Lesson</p>
-      <h1 class="page-header__title">オンラインレッスン</h1>
+  <section class="sub-hero">
+    <div class="sub-hero__inner">
+      <div class="sub-hero__text">
+        <p class="sub-hero__crumb"><a href="index.html">HOME</a><span></span>ONLINE LESSON</p>
+        <p class="sub-hero__en">Online</p>
+        <h1 class="sub-hero__title">オンラインレッスン</h1>
+        <p class="sub-hero__lead">毎週木曜日のライブレッスンと、1か月見放題のアーカイブ。ご自宅から、自分のペースで身体を整えられます。</p>
+      </div>
+      <figure class="sub-hero__photo"><img src="assets/sub-online.webp?v=1790611136" alt="自宅でノートパソコンを見ながらエクササイズをする女性"></figure>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <p class="section__eyebrow">ONLINE LESSON</p>
-      <h2 class="intro-lead__title">自分のペースで、<br>身体を整える。</h2>
-      <p class="section__lead">
-        忙しくてスタジオに通う時間がない方も、<br>
-        ご自宅から無理なく続けられるオンラインレッスン。<br><br>
-        仕事や家事の合間に。<br>
-        自分の身体と向き合う時間を、毎日の習慣に。
-      </p>
-      <div class="cta">
-        <a href="https://mosh.jp/services/158460" class="cta__button" target="_blank" rel="noopener">オンラインレッスン詳細・お申し込み</a>
+      <div class="split">
+        <figure class="split__photo split__photo--wide reveal"><img src="assets/online-split.webp?v=1790611136" alt="ノートパソコンの前でストレッチをする女性" loading="lazy"></figure>
+        <div class="reveal" style="--reveal-delay:0.15s;">
+          <p class="section__eyebrow">ONLINE LESSON</p>
+          <h2 class="split__title split__title--serif">自分のペースで、<br>身体を整える。</h2>
+          <p class="split__body">
+            忙しくてスタジオに通う時間がない方も、ご自宅から無理なく続けられるオンラインレッスン。<br><br>
+            仕事や家事の合間に。自分の身体と向き合う時間を、毎日の習慣に。
+          </p>
+          <a href="https://mosh.jp/services/158460" class="cta__button" target="_blank" rel="noopener">オンラインレッスン詳細・お申し込み</a>
+        </div>
       </div>
     </div>
   </section>
@@ -149,6 +154,7 @@
 
   <section class="section section--muted">
     <div class="container">
+      <p class="icon-heading"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-live"/></svg></p>
       <p class="section__eyebrow">LIVE LESSON</p>
       <h2 class="section__title">毎週木曜日</h2>
       <p class="section__lead" style="margin-bottom:32px;">第5木曜日を除く</p>
@@ -174,6 +180,7 @@
 
   <section class="section">
     <div class="container">
+      <p class="icon-heading"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-archive"/></svg></p>
       <p class="section__eyebrow">ARCHIVE</p>
       <h2 class="section__title">申し込み後、すぐに始められます。</h2>
       <p class="section__lead">
@@ -199,22 +206,26 @@
 
       <div class="flow-steps reveal">
         <div class="flow-step">
-          <span class="flow-step__num">01</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg></span>
+          <p class="flow-step__no">STEP 01</p>
           <p class="flow-step__label">お申し込み<br>プランを選んでお申し込み</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">02</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-archive"/></svg></span>
+          <p class="flow-step__no">STEP 02</p>
           <p class="flow-step__label">すぐにスタート<br>公開済みのアーカイブを<br>当日から視聴</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">03</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-live"/></svg></span>
+          <p class="flow-step__no">STEP 03</p>
           <p class="flow-step__label">LIVE LESSON<br>最短で次の木曜日から<br>Zoomで参加</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">04</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-leaf"/></svg></span>
+          <p class="flow-step__no">STEP 04</p>
           <p class="flow-step__label">繰り返し整える<br>ライブとアーカイブで<br>自分のペースで継続</p>
         </div>
       </div>
@@ -277,6 +288,6 @@
 
 </div>
 
-<script src="js/main.js?v=1790610425"></script>
+<script src="js/main.js?v=1790611136"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=Playfair+Display:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1790610425">
+<link rel="stylesheet" href="css/style.css?v=1790611136">
 </head>
 <body>
 
@@ -59,20 +59,20 @@
 
 <main>
 
-  <section class="page-header">
-    <img src="assets/page-price.webp" alt="スタジオの落ち着いた雰囲気" class="page-header__img" data-parallax>
-    <div class="page-header__copy">
-      <p class="page-header__eyebrow">Plan &amp; Price</p>
-      <h1 class="page-header__title">料金プラン</h1>
+  <section class="sub-hero">
+    <div class="sub-hero__inner">
+      <div class="sub-hero__text">
+        <p class="sub-hero__crumb"><a href="index.html">HOME</a><span></span>PRICE</p>
+        <p class="sub-hero__en">Price</p>
+        <h1 class="sub-hero__title">料金プラン</h1>
+        <p class="sub-hero__lead">スタジオレッスンは月額プランと都度払いプランからお選びいただけます。パーソナルレッスンは別途のご予約となります。</p>
+      </div>
+      <figure class="sub-hero__photo"><img src="assets/sub-price.webp" alt="アーチのあるスタジオでリフォーマーを使う女性"></figure>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <p class="section__lead">
-        スタジオレッスンは月額プランと都度払いプランからお選びいただけます。パーソナルレッスンは別途のご予約となります。
-      </p>
-
       <div class="price-tabs reveal" role="tablist">
         <button type="button" class="price-tab is-active" data-price-tab="studio">スタジオのみ</button>
         <button type="button" class="price-tab" data-price-tab="online">オンライン併用</button>
@@ -212,10 +212,16 @@
     <div class="container">
       <p class="section__eyebrow">Membership</p>
       <h2 class="section__title">入会金</h2>
-      <table class="info-table reveal">
-        <tr><th>体験料</th><td>5,500円</td></tr>
-        <tr><th>入会金</th><td>20,000円</td></tr>
-      </table>
+      <div class="fee-cards">
+        <div class="fee-card reveal">
+          <p class="fee-card__label">体験料</p>
+          <p class="fee-card__price">5,500<small>円</small></p>
+        </div>
+        <div class="fee-card reveal" style="--reveal-delay:0.1s;">
+          <p class="fee-card__label">入会金</p>
+          <p class="fee-card__price">20,000<small>円</small></p>
+        </div>
+      </div>
       <ul class="note-list">
         <li>※体験後、ご来店時にご入会していただいた方は10,000円になります</li>
         <li>※体験後、当日中にご入会していただいた方は15,000円になります</li>
@@ -232,12 +238,14 @@
 
       <div class="reserve-grid">
         <div class="reserve-card reveal">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-calendar"/></svg>
           <p class="reserve-card__tag">STUDIO</p>
           <p class="reserve-card__title">体験のご予約<br>レッスンのご予約</p>
           <p class="reserve-card__text">体験レッスン・通常レッスンのご予約は、いずれもこちらから承っております。</p>
           <a href="https://resetbodyandmind-pilates.hacomono.jp/home" class="cta__button" target="_blank" rel="noopener">ご予約はこちら</a>
         </div>
         <div class="reserve-card reveal" style="--reveal-delay:0.1s;">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-laptop"/></svg>
           <p class="reserve-card__tag">ONLINE</p>
           <p class="reserve-card__title">オンラインレッスンの<br>お申し込み</p>
           <p class="reserve-card__text">オンラインレッスンのお申し込みはこちらから承っております。</p>
@@ -291,6 +299,6 @@
 
 </div>
 
-<script src="js/main.js?v=1790610425"></script>
+<script src="js/main.js?v=1790611136"></script>
 </body>
 </html>

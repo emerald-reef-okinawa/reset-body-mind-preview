@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=Playfair+Display:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1790610425">
+<link rel="stylesheet" href="css/style.css?v=1790611136">
 </head>
 <body>
 
@@ -59,11 +59,15 @@
 
 <main>
 
-  <section class="page-header">
-    <img src="assets/page-lesson.webp" alt="マシンピラティスのレッスン風景" class="page-header__img" data-parallax>
-    <div class="page-header__copy">
-      <p class="page-header__eyebrow">Group Lesson (70mins)</p>
-      <h1 class="page-header__title">Lesson</h1>
+  <section class="sub-hero">
+    <div class="sub-hero__inner">
+      <div class="sub-hero__text">
+        <p class="sub-hero__crumb"><a href="index.html">HOME</a><span></span>LESSON</p>
+        <p class="sub-hero__en">Lesson</p>
+        <h1 class="sub-hero__title">レッスン</h1>
+        <p class="sub-hero__lead">骨盤・美尻美脚・肩・首・歩行の5つのグループクラス（70分）と、パーソナルレッスン（60分）をご用意しています。</p>
+      </div>
+      <figure class="sub-hero__photo"><img src="assets/sub-lesson.webp" alt="リフォーマーでストラップを使ったピラティス"></figure>
     </div>
   </section>
 
@@ -119,82 +123,103 @@
     </div>
   </section>
 
-  <section class="lesson-showcase reveal">
-    <img src="assets/lesson-detail.webp" alt="レッスン中のストレッチの様子" loading="lazy" data-parallax>
-    <p class="lesson-showcase__caption">お一人お一人の骨格に合わせて、丁寧に指導いたします</p>
-  </section>
-
   <section class="section section--muted">
     <div class="container">
-      <p class="section__eyebrow">Personal Lesson (60mins)</p>
-      <h2 class="section__title">Instructors</h2>
-      <div class="chip-list reveal">
-        <span class="chip">Miyako</span>
-        <span class="chip">Mariko</span>
-        <span class="chip">Rika</span>
-        <span class="chip">Chiaki</span>
-        <span class="chip">Rina</span>
-        <span class="chip">Emi</span>
-        <span class="chip">Mika</span>
-        <span class="chip">Momo</span>
-        <span class="chip">Rie</span>
+      <div class="split">
+        <figure class="split__photo reveal"><img src="assets/lesson-split.webp" alt="リフォーマーの上で姿勢を整えるレッスンの様子" loading="lazy"></figure>
+        <div class="reveal" style="--reveal-delay:0.15s;">
+          <p class="section__eyebrow">ORDER-MADE</p>
+          <h2 class="split__title">お一人お一人の骨格に合わせて、<br>丁寧に指導いたします</h2>
+          <p class="split__body">グループレッスンでも、お一人お一人の骨格やクセに合わせてアドバイスいたします。変化を記録しながら、あなたのペースで整えていきます。</p>
+          <ul class="feature-list">
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-karte"/></svg>お一人お一人のカルテを作成</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-camera"/></svg>10回ごとにカルテの写真を更新</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-doc"/></svg>10回ごとに宿題を更新</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
+    <div class="container">
+      <p class="section__eyebrow">Personal Lesson (60mins)</p>
+      <h2 class="section__title">Instructors</h2>
+      <div class="instructor-list reveal">
+        <div class="instructor"><span class="instructor__mark">M</span><span class="instructor__name">Miyako</span><span class="instructor__role">Owner</span></div>
+        <div class="instructor"><span class="instructor__mark">M</span><span class="instructor__name">Mariko</span></div>
+        <div class="instructor"><span class="instructor__mark">R</span><span class="instructor__name">Rika</span></div>
+        <div class="instructor"><span class="instructor__mark">C</span><span class="instructor__name">Chiaki</span></div>
+        <div class="instructor"><span class="instructor__mark">R</span><span class="instructor__name">Rina</span></div>
+        <div class="instructor"><span class="instructor__mark">E</span><span class="instructor__name">Emi</span></div>
+        <div class="instructor"><span class="instructor__mark">M</span><span class="instructor__name">Mika</span></div>
+        <div class="instructor"><span class="instructor__mark">M</span><span class="instructor__name">Momo</span></div>
+        <div class="instructor"><span class="instructor__mark">R</span><span class="instructor__name">Rie</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
     <div class="container">
       <p class="section__eyebrow">TRIAL LESSON</p>
       <h2 class="section__title">体験レッスンの流れ</h2>
 
       <div class="flow-steps reveal">
         <div class="flow-step">
-          <span class="flow-step__num">01</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-door"/></svg></span>
+          <p class="flow-step__no">STEP 01</p>
           <p class="flow-step__label">ご来店・受付</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">02</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chat"/></svg></span>
+          <p class="flow-step__no">STEP 02</p>
           <p class="flow-step__label">お悩みや目的の<br>ヒアリング</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">03</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-posture"/></svg></span>
+          <p class="flow-step__no">STEP 03</p>
           <p class="flow-step__label">姿勢・身体の<br>チェック</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">04</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-mat"/></svg></span>
+          <p class="flow-step__no">STEP 04</p>
           <p class="flow-step__label">レッスン</p>
         </div>
         <span class="flow-step__arrow" aria-hidden="true">→</span>
         <div class="flow-step">
-          <span class="flow-step__num">05</span>
+          <span class="flow-step__num"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-doc"/></svg></span>
+          <p class="flow-step__no">STEP 05</p>
           <p class="flow-step__label">入会プランの<br>ご相談</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--muted">
+  <section class="section">
     <div class="container">
       <p class="section__eyebrow">AFTER JOINING</p>
       <h2 class="section__title">入会後のレッスンの流れ</h2>
 
       <div class="join-flow">
         <div class="join-flow__card reveal">
+<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-camera"/></svg><div>
           <p class="join-flow__badge">初回</p>
-          <p class="join-flow__text">レッスン前にBefore写真を撮影するため、15分前を目安にご来店いただきます。</p>
+          <p class="join-flow__text">レッスン前にBefore写真を撮影するため、15分前を目安にご来店いただきます。</p></div>
         </div>
         <div class="join-flow__card reveal" style="--reveal-delay:0.1s;">
+<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-karte"/></svg><div>
           <p class="join-flow__badge">2回目以降</p>
-          <p class="join-flow__text">受付でカルテを受け取り、レッスンへ。終了後はそのままお帰りいただけます。</p>
+          <p class="join-flow__text">受付でカルテを受け取り、レッスンへ。終了後はそのままお帰りいただけます。</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--muted">
+    <img class="spine-deco spine-deco--right" src="assets/spine.svg" alt="" aria-hidden="true">
     <div class="container">
       <p class="section__eyebrow">Recommendation</p>
       <h2 class="section__title">トレーニングの推奨回数</h2>
@@ -203,13 +228,11 @@
         それ以上通える方は、より早い変化や効果を実感して頂けます。
       </p>
 
-      <div class="quote-block reveal">
-        <p class="quote-block__title">〜Joseph Pilatesの名言〜</p>
-        <p>
-          10回で自分の中の変化に気づき<br>
-          20回で人から見た目も変わり<br>
-          30回で人生の全てが変わる
-        </p>
+      <p class="milestones__source" style="margin-top:48px;">〜Joseph Pilatesの名言〜</p>
+      <div class="milestones reveal">
+        <div class="milestone"><p class="milestone__num">10<small>回</small></p><p class="milestone__text">自分の中の変化に気づき</p></div>
+        <div class="milestone"><p class="milestone__num">20<small>回</small></p><p class="milestone__text">人から見た目も変わり</p></div>
+        <div class="milestone"><p class="milestone__num">30<small>回</small></p><p class="milestone__text">人生の全てが変わる</p></div>
       </div>
 
       <p class="section__lead" style="margin-bottom:0;">
@@ -220,7 +243,7 @@
     </div>
   </section>
 
-  <section class="section section--muted">
+  <section class="section">
     <div class="container cta reveal">
       <p class="section__eyebrow">TRIAL LESSON</p>
       <h2 class="section__title" style="margin-bottom:24px;">体験レッスンのご予約</h2>
@@ -277,6 +300,6 @@
 
 </div>
 
-<script src="js/main.js?v=1790610425"></script>
+<script src="js/main.js?v=1790611136"></script>
 </body>
 </html>
