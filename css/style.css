@@ -1928,6 +1928,67 @@ body {
   }
 }
 
+/* ---------- Reservation cards ---------- */
+
+.reserve-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.reserve-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 32px;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  box-shadow: 0 1px 2px rgba(20, 56, 58, 0.04);
+  transition: opacity 0.7s cubic-bezier(0.3, 0.2, 0, 1), transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
+  transition-delay: var(--reveal-delay, 0s), 0s, 0s;
+}
+
+.reserve-card.is-visible:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(20, 56, 58, 0.1);
+}
+
+.reserve-card__tag {
+  margin-bottom: 16px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--color-sage);
+}
+
+.reserve-card__title {
+  font-family: var(--font-jp-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.reserve-card__text {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.9;
+}
+
+.reserve-card .cta__button {
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .reserve-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
 /* ===========================================================
    Refinement layer: motion & editorial details
    =========================================================== */
