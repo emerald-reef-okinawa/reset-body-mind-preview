@@ -201,3 +201,84 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", onScroll);
   update();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Scroll progress line, back-to-top button, and a header that tucks away
+  // while scrolling down and returns when scrolling up.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  progress.setAttribute("aria-hidden", "true");
+  document.body.appendChild(progress);
+
+  const toTop = document.createElement("button");
+  toTop.type = "button";
+  toTop.className = "back-to-top";
+  toTop.setAttribute("aria-label", "ページの先頭へ戻る");
+  toTop.innerHTML = '<span aria-hidden="true">&uarr;</span>';
+  document.body.appendChild(toTop);
+  toTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
+  const header = document.querySelector(".site-header");
+  const drawer = document.querySelector("[data-nav-drawer]");
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+    toTop.classList.toggle("is-shown", y > 600);
+
+    if (header) {
+      header.classList.toggle("is-scrolled", y > 10);
+      const drawerOpen = drawer && drawer.classList.contains("is-open");
+      if (!drawerOpen && y > 240 && y > lastY + 4) {
+        header.classList.add("is-hidden");
+      } else if (y < lastY - 4 || y <= 240 || drawerOpen) {
+        header.classList.remove("is-hidden");
+      }
+    }
+    lastY = y;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Section titles slide up from behind a mask, and the eyebrow label draws
+  // a short line on either side, as each heading scrolls into view.
+  const titles = document.querySelectorAll(".section__title");
+  const eyebrows = document.querySelectorAll(".section__eyebrow");
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    eyebrows.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+
+  titles.forEach((title) => {
+    title.innerHTML = `<span class="title-mask"><span class="title-mask__inner">${title.innerHTML}</span></span>`;
+  });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.3, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  [...titles, ...eyebrows].forEach((el) => io.observe(el));
+});
