@@ -224,6 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const header = document.querySelector(".site-header");
   const drawer = document.querySelector("[data-nav-drawer]");
+  const floating = document.querySelector(".floating-cta");
+  const footer = document.querySelector(".site-footer");
   let lastY = window.scrollY;
   let ticking = false;
 
@@ -232,7 +234,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
-    toTop.classList.toggle("is-shown", y > 600);
+    // Both floating buttons step aside once the footer (which has its own
+    // PAGE TOP link) scrolls into view.
+    const atFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 80;
+    toTop.classList.toggle("is-shown", y > 600 && !atFooter);
+    // On desktop the pill joins once the visitor starts scrolling; the hero
+    // already carries its own reserve button in the first view.
+    if (floating) floating.classList.toggle("is-shown", y > 160 && !atFooter);
 
     if (header) {
       header.classList.toggle("is-scrolled", y > 10);
