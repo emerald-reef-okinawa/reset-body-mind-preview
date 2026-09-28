@@ -290,3 +290,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   [...titles, ...eyebrows].forEach((el) => io.observe(el));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Hero: both photos fill the frame; the split between them follows the
+  // cursor (or a finger on touch screens), eased so it glides rather than jumps.
+  const hero = document.querySelector(".hero");
+  if (!hero || !hero.querySelector(".hero__split")) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let target = 50;
+  let current = 50;
+  let frame = null;
+
+  const apply = () => hero.style.setProperty("--split", `${current.toFixed(2)}%`);
+
+  const tick = () => {
+    current += (target - current) * 0.14;
+    if (Math.abs(target - current) < 0.05) current = target;
+    apply();
+    frame = current === target ? null : requestAnimationFrame(tick);
+  };
+
+  const moveTo = (clientX) => {
+    const rect = hero.getBoundingClientRect();
+    target = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    if (reduceMotion) {
+      current = target;
+      apply();
+      return;
+    }
+    if (!frame) frame = requestAnimationFrame(tick);
+  };
+
+  hero.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "mouse") moveTo(e.clientX);
+  });
+  hero.addEventListener("pointerleave", (e) => {
+    if (e.pointerType !== "mouse") return;
+    const rect = hero.getBoundingClientRect();
+    moveTo(rect.left + rect.width / 2);
+  });
+  hero.addEventListener("touchstart", (e) => moveTo(e.touches[0].clientX), { passive: true });
+  hero.addEventListener("touchmove", (e) => moveTo(e.touches[0].clientX), { passive: true });
+
+  apply();
+});

@@ -401,20 +401,20 @@ h1, h2, h3, p {
 
 /* ---------- Hero ---------- */
 
-/* A 696px-tall band (as on the original site), photos running edge to edge
-   in an even split. On phones the band is wider than the screen and the photos
-   bleed off both edges. */
+/* A 696px-tall frame (as on the original site). Both photos fill the whole
+   frame; the second is clipped at --split, which follows the cursor, so the
+   first photo shows to its left and the second to its right. */
 main {
   overflow-x: clip;
 }
 
 .hero {
+  --split: 50%;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   width: 100%;
   margin: 0 auto;
   height: 696px;
+  cursor: col-resize;
 }
 
 
@@ -425,9 +425,53 @@ main {
 }
 
 .hero__panel {
-  position: relative;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   background: #111;
+}
+
+.hero__panel:nth-child(2) {
+  clip-path: inset(0 0 0 var(--split));
+}
+
+.hero__split {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  z-index: 1;
+  width: 1px;
+  margin-left: -0.5px;
+  background: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.hero__split::before,
+.hero__split::after {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.hero__split::before {
+  content: "";
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hero__split::after {
+  content: "‹  ›";
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .hero__panel img {
@@ -1654,9 +1698,6 @@ body {
 
 @media (max-width: 720px) {
   .hero {
-    width: 131.5%;
-    margin-left: -15.75%;
-    grid-template-columns: 2fr 1fr;
     height: 590px;
   }
   .hero__logo {
