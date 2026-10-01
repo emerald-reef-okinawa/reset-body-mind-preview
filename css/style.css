@@ -3672,22 +3672,36 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 /* ---------- Home: statement (骨格リセットピラティス) ---------- */
 
-.statement__body .section__eyebrow {
+.statement__head .section__eyebrow {
   justify-content: flex-start;
 }
 
-.statement__body .section__eyebrow::before {
+.statement__head .section__eyebrow::before {
   display: none;
 }
 
-.statement__body .section__title {
+.statement__head .section__title {
   margin-bottom: 36px;
   text-align: left;
 }
 
+.statement__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: 72px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.statement__copy {
+  padding: 8px 0 8px 40px;
+  border-left: 1px solid rgba(39, 134, 61, 0.3);
+}
+
 .statement__quote {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 0;
   padding: 26px 0 26px 28px;
   border-left: 2px solid var(--color-sage);
   font-family: var(--font-jp-heading);
@@ -3703,9 +3717,10 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 }
 
 .statement__lead {
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   font-family: var(--font-jp-heading);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
@@ -3758,13 +3773,29 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 }
 
 @media (max-width: 760px) {
-  .statement__body .section__eyebrow {
+  .statement__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .statement__copy {
+    padding: 0;
+    border-left: none;
+    text-align: center;
+  }
+  .statement__quote {
+    display: inline-block;
+    text-align: left;
+  }
+  .statement__head {
+    text-align: center;
+  }
+  .statement__head .section__eyebrow {
     justify-content: center;
   }
-  .statement__body .section__eyebrow::before {
+  .statement__head .section__eyebrow::before {
     display: block;
   }
-  .statement__body .section__title {
+  .statement__head .section__title {
     text-align: center;
   }
 }
