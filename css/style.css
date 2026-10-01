@@ -3670,6 +3670,147 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   }
 }
 
+/* ---------- Home: statement (骨格リセットピラティス) ---------- */
+
+.statement__body .section__eyebrow {
+  justify-content: flex-start;
+}
+
+.statement__body .section__eyebrow::before {
+  display: none;
+}
+
+.statement__body .section__title {
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.statement__quote {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 26px 0 26px 28px;
+  border-left: 2px solid var(--color-sage);
+  font-family: var(--font-jp-heading);
+  font-size: clamp(1.5rem, 3.1vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.statement__quote span {
+  color: var(--color-sage);
+}
+
+.statement__lead {
+  margin-bottom: 14px;
+  font-family: var(--font-jp-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.statement__text {
+  font-size: 14px;
+  line-height: 2.1;
+  color: var(--color-muted);
+}
+
+.statement__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 72px;
+  border-top: 1px solid rgba(39, 134, 61, 0.3);
+  border-bottom: 1px solid rgba(39, 134, 61, 0.3);
+}
+
+.statement__tags li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 26px;
+  font-family: var(--font-jp-heading);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+
+.statement__tags li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-sage);
+}
+
+.statement__tags li + li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 22px;
+  translate: 0 -50%;
+  background: rgba(39, 134, 61, 0.3);
+}
+
+@media (max-width: 760px) {
+  .statement__body .section__eyebrow {
+    justify-content: center;
+  }
+  .statement__body .section__eyebrow::before {
+    display: block;
+  }
+  .statement__body .section__title {
+    text-align: center;
+  }
+}
+
+/* Below desktop width the five keywords wrap, so drop the ruled row for pills. */
+@media (max-width: 1000px) {
+  .statement__tags {
+    gap: 10px;
+    margin-top: 48px;
+    padding: 0;
+    border: none;
+  }
+  .statement__tags li {
+    padding: 9px 16px;
+    border: 1px solid rgba(39, 134, 61, 0.35);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+  }
+  .statement__tags li + li::after {
+    display: none;
+  }
+}
+
+/* ---------- Home: values (私たちが大切にする3つのこと) on the navy band ---------- */
+
+.values .concept-item {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.values .concept-item::before {
+  background: #8fe0a6;
+}
+
+.values .concept-item__num {
+  color: rgba(143, 224, 166, 0.16);
+}
+
+.values .concept-item__title {
+  color: #fff;
+}
+
+.values .concept-item__body {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
