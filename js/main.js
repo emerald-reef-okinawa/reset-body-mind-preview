@@ -336,14 +336,14 @@ document.addEventListener("DOMContentLoaded", () => {
   apply();
 });
 
-// Instructors page: pick a thumbnail and that instructor's profile opens large.
+// Instructors page: game-style member select. Picking a tile shows that profile large.
 // Thumbnails act as tabs; PREV/NEXT, arrow keys and the URL hash also switch.
 document.addEventListener("DOMContentLoaded", () => {
   const sc = document.querySelector("[data-showcase]");
   if (!sc) return;
 
   const thumbs = [...sc.querySelectorAll("[data-sc-tile]")];
-  const strip = sc.querySelector(".showcase__strip");
+  const strip = sc.querySelector("[data-sc-strip]");
   const stage = sc.querySelector("[data-sc-stage]");
   const bar = sc.querySelector("[data-sc-bar]");
   const ids = thumbs.map((t) => t.dataset.scTile);
@@ -358,7 +358,10 @@ document.addEventListener("DOMContentLoaded", () => {
       t.setAttribute("aria-selected", on ? "true" : "false");
       t.tabIndex = on ? 0 : -1;
     });
-    sc.querySelectorAll(".showcase__panel").forEach((p) => p.classList.toggle("is-active", p.id === id));
+    sc.querySelectorAll("[data-sc-panel]").forEach((p) => p.classList.toggle("is-active", p.id === id));
+    stage.classList.remove("is-flash");
+    void stage.offsetWidth;
+    stage.classList.add("is-flash");
     bar.style.setProperty("--progress", `${((index + 1) / ids.length) * 100}%`);
     history.replaceState(null, "", `#${id}`);
 
