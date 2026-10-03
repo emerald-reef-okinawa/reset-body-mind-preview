@@ -348,6 +348,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const bar = sc.querySelector("[data-sc-bar]");
   const ids = thumbs.map((t) => t.dataset.scTile);
   let index = 0;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const EASE = "cubic-bezier(0.19, 1, 0.22, 1)";
+
+  // Entrance motion for the shown member. Nothing is hidden by CSS: every
+  // animation only plays on top of the visible end state, and each one is
+  // forced to finish shortly after it should have, so a stalled animation
+  // (background tab, reload, Safari repaint quirks) can never leave a photo invisible.
+  const play = (el, keyframes, duration, delay = 0) => {
+    if (!el || !el.animate) return;
+    const anim = el.animate(keyframes, { duration, delay, easing: EASE, fill: "backwards" });
+    setTimeout(() => {
+      try { anim.finish(); } catch (e) {}
+    }, delay + duration + 300);
+  };
+
+  const animatePanel = (panel) => {
+    if (reduceMotion || !panel) return;
+    play(panel.querySelector(".gs__photo"), [
+      { opacity: 0, transform: "translateX(90px) skewX(-14deg)" },
+      { opacity: 1, transform: "skewX(-6deg)" },
+    ], 800);
+    play(panel.querySelector(".gs__photo img"), [
+      { filter: "brightness(1.7)" },
+      { filter: "brightness(1)" },
+    ], 700, 120);
+    play(panel.querySelector(".gs__bigname"), [
+      { opacity: 0, transform: "translateX(-120px)" },
+      { opacity: 1, transform: "none" },
+    ], 1000, 50);
+    play(panel.querySelector(".gs__no"), [
+      { opacity: 0, transform: "scale(1.8)" },
+      { opacity: 1, transform: "none" },
+    ], 700, 300);
+    panel.querySelectorAll(".gs__chars span").forEach((ch, n) => {
+      play(ch, [{ transform: "translateY(105%)" }, { transform: "none" }], 700, 200 + n * 45);
+    });
+    [...panel.querySelectorAll(".gs__info > :not(.gs__name)")].forEach((el, n) => {
+      play(el, [
+        { opacity: 0, transform: "translateX(28px)" },
+        { opacity: 1, transform: "none" },
+      ], 700, 220 + n * 80);
+    });
+  };
 
   const select = (i, { focus = false, scroll = false } = {}) => {
     index = (i + ids.length) % ids.length;
@@ -359,6 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
       t.tabIndex = on ? 0 : -1;
     });
     sc.querySelectorAll("[data-sc-panel]").forEach((p) => p.classList.toggle("is-active", p.id === id));
+    animatePanel(document.getElementById(id));
     stage.classList.remove("is-flash");
     void stage.offsetWidth;
     stage.classList.add("is-flash");
