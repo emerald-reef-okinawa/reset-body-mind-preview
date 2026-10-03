@@ -3971,3 +3971,758 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
     transform: none;
   }
 }
+
+/* ---------- Instructors: 3 per row on the lesson page ---------- */
+
+.instructor-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 24px;
+  max-width: 520px;
+}
+
+.instructor {
+  width: auto;
+  color: inherit;
+}
+
+.instructor__mark {
+  width: 120px;
+  height: 120px;
+  font-size: 40px;
+}
+
+.instructor-list__more {
+  margin-top: 44px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .instructor-list {
+    gap: 28px 12px;
+  }
+  .instructor__mark {
+    width: 92px;
+    height: 92px;
+    font-size: 32px;
+  }
+}
+
+/* ---------- Instructors page: compact sub-hero ---------- */
+
+.sub-hero--compact .sub-hero__inner {
+  grid-template-columns: 1fr;
+  min-height: 0;
+  padding-bottom: 0;
+}
+
+.sub-hero--compact .sub-hero__text {
+  padding-bottom: 72px;
+}
+
+/* ---------- Instructors page: character select ---------- */
+
+.cs {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+  margin-top: 8px;
+}
+
+.cs__roster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+}
+
+.cs__tile {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  background: var(--color-accent);
+  cursor: pointer;
+  aspect-ratio: 1;
+  outline: none;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cs__tile-img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.cs__tile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.9) contrast(0.95);
+  opacity: 0.62;
+  transform: scale(1.04);
+  transition: filter 0.5s ease, opacity 0.5s ease, transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cs__tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to top, rgba(20, 56, 58, 0.78), rgba(20, 56, 58, 0) 55%);
+  pointer-events: none;
+}
+
+.cs__tile-no {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 1;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cs__tile-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  z-index: 1;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
+
+/* Selection frame: four corner brackets that snap in around the chosen tile */
+.cs__tile::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  z-index: 2;
+  --c: var(--color-sage);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 18px 2px,
+    linear-gradient(var(--c), var(--c)) top left / 2px 18px,
+    linear-gradient(var(--c), var(--c)) top right / 18px 2px,
+    linear-gradient(var(--c), var(--c)) top right / 2px 18px,
+    linear-gradient(var(--c), var(--c)) bottom left / 18px 2px,
+    linear-gradient(var(--c), var(--c)) bottom left / 2px 18px,
+    linear-gradient(var(--c), var(--c)) bottom right / 18px 2px,
+    linear-gradient(var(--c), var(--c)) bottom right / 2px 18px;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.12);
+  transition: opacity 0.25s ease, transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.cs__tile:hover .cs__tile-img img,
+.cs__tile:focus-visible .cs__tile-img img {
+  filter: grayscale(0.3);
+  opacity: 0.9;
+}
+
+.cs__tile:focus-visible::before {
+  opacity: 0.5;
+  transform: none;
+}
+
+.cs__tile.is-active .cs__tile-img img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cs__tile.is-active::before {
+  opacity: 1;
+  transform: none;
+  animation: cs-bracket 1.6s ease-in-out 0.45s infinite;
+}
+
+.cs__tile.is-active {
+  transform: translateY(-3px);
+}
+
+@keyframes cs-bracket {
+  0%, 100% { inset: -7px; }
+  50% { inset: -4px; }
+}
+
+/* Stage: the selected instructor's card */
+.cs__stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  padding: 28px 40px 48px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(143, 224, 166, 0.16), transparent 55%),
+    var(--color-accent);
+  color: #fff;
+}
+
+.cs__stage::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.cs__stage.is-flash::after {
+  animation: cs-sweep 0.7s cubic-bezier(0.3, 0.2, 0, 1);
+}
+
+@keyframes cs-sweep {
+  from { left: -40%; opacity: 1; }
+  to { left: 120%; opacity: 1; }
+}
+
+.cs__hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.cs__hud-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cs__hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8fe0a6;
+  box-shadow: 0 0 0 0 rgba(143, 224, 166, 0.6);
+  animation: cs-blink 2s ease-out infinite;
+}
+
+@keyframes cs-blink {
+  0% { box-shadow: 0 0 0 0 rgba(143, 224, 166, 0.6); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(143, 224, 166, 0); }
+}
+
+.cs__arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.cs__arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0 0 3px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.cs__arrow:hover,
+.cs__arrow:focus-visible {
+  border-color: #8fe0a6;
+  background: #8fe0a6;
+  color: var(--color-accent);
+  outline: none;
+}
+
+.cs__panel {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+}
+
+.cs.is-ready .cs__panel:not(.is-active) {
+  display: none;
+}
+
+.cs.is-ready .cs__panel + .cs__panel {
+  margin-top: 0;
+}
+
+.cs__panel + .cs__panel {
+  margin-top: 56px;
+}
+
+.cs__portrait {
+  position: relative;
+  padding-top: 26px;
+}
+
+.cs__portrait img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 999px 999px 16px 16px;
+}
+
+.cs__portrait::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 12px;
+  left: 14px;
+  right: -14px;
+  bottom: -14px;
+  border: 1px solid rgba(143, 224, 166, 0.55);
+  border-radius: 999px 999px 16px 16px;
+}
+
+.cs__ghost {
+  position: absolute;
+  z-index: 2;
+  left: -8px;
+  bottom: -18px;
+  font-family: var(--font-hero);
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  font-style: italic;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cs__no {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: #8fe0a6;
+}
+
+.cs__no span {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cs__name {
+  margin-top: 6px;
+  font-family: var(--font-hero);
+  font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.cs__role {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cs__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.cs__badges li {
+  padding: 5px 12px;
+  border: 1px solid rgba(143, 224, 166, 0.5);
+  border-radius: 999px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8fe0a6;
+}
+
+.cs__catch {
+  margin-top: 26px;
+  padding-left: 18px;
+  border-left: 2px solid #8fe0a6;
+  font-family: var(--font-jp-heading);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+}
+
+.cs__bio {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+  font-size: 14px;
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cs__qa {
+  display: grid;
+  gap: 4px;
+}
+
+.cs__qa dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-jp-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+.cs__qa dt::before {
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: #8fe0a6;
+}
+
+.cs__soon {
+  padding: 18px 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.cs__hint {
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: right;
+  color: var(--color-muted);
+}
+
+/* Entrance when a panel becomes active */
+.cs.is-ready .cs__panel.is-active .cs__portrait img {
+  animation: cs-portrait-in 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.cs.is-ready .cs__panel.is-active .cs__ghost {
+  animation: cs-ghost-in 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.08s both;
+}
+
+.cs.is-ready .cs__panel.is-active .cs__info > * {
+  animation: cs-rise 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.cs.is-ready .cs__panel.is-active .cs__info > :nth-child(2) { animation-delay: 0.05s; }
+.cs.is-ready .cs__panel.is-active .cs__info > :nth-child(3) { animation-delay: 0.1s; }
+.cs.is-ready .cs__panel.is-active .cs__info > :nth-child(4) { animation-delay: 0.15s; }
+.cs.is-ready .cs__panel.is-active .cs__info > :nth-child(5) { animation-delay: 0.2s; }
+.cs.is-ready .cs__panel.is-active .cs__info > :nth-child(6) { animation-delay: 0.25s; }
+
+@keyframes cs-portrait-in {
+  from { opacity: 0; transform: translateX(36px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes cs-ghost-in {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes cs-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1000px) {
+  .cs {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .cs__roster {
+    position: static;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 10px;
+  }
+  .cs__tile {
+    border-radius: 10px;
+  }
+  .cs__tile-no {
+    display: none;
+  }
+  .cs__tile-name {
+    bottom: 5px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+  .cs__tile::before {
+    inset: -5px;
+  }
+  @keyframes cs-bracket {
+    0%, 100% { inset: -5px; }
+    50% { inset: -3px; }
+  }
+}
+
+@media (max-width: 640px) {
+  .cs__roster {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .cs__tile-name {
+    bottom: 7px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+  .cs__tile-no {
+    display: block;
+  }
+  .cs__stage {
+    min-height: 0;
+    padding: 20px 22px 36px;
+  }
+  .cs__panel {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .cs__portrait {
+    width: 54%;
+    max-width: 210px;
+    margin: 0 auto;
+  }
+  .cs__hint {
+    text-align: center;
+  }
+}
+
+/* ---------- Online lesson: video-call illustration instead of a second photo ---------- */
+
+.online-visual {
+  position: relative;
+  margin: 0;
+}
+
+.online-visual__screen {
+  position: relative;
+  padding: 16px;
+  border: 10px solid #1d2b2c;
+  border-radius: 18px 18px 6px 6px;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(143, 224, 166, 0.25), transparent 50%),
+    var(--color-accent);
+  color: #fff;
+  aspect-ratio: 16 / 11;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+}
+
+.online-visual__base {
+  height: 12px;
+  margin: 0 -7%;
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(#d5dcdc, #b7c2c2);
+}
+
+.online-visual__base::after {
+  content: "";
+  display: block;
+  width: 18%;
+  height: 5px;
+  margin: 0 auto;
+  border-radius: 0 0 6px 6px;
+  background: #9aa6a6;
+}
+
+.online-visual__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.online-visual__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e0574f;
+  color: #fff;
+}
+
+.online-visual__live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: online-live 1.4s ease-in-out infinite;
+}
+
+@keyframes online-live {
+  50% { opacity: 0.25; }
+}
+
+.online-visual__main {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+.online-visual__main img {
+  width: 34%;
+  max-width: 120px;
+  opacity: 0.9;
+}
+
+.online-visual__title {
+  font-family: var(--font-hero);
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  font-style: italic;
+}
+
+.online-visual__time {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: #8fe0a6;
+}
+
+.online-visual__people {
+  display: flex;
+  gap: 8px;
+}
+
+.online-visual__people img {
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.online-visual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -22px;
+  top: -22px;
+  width: 44%;
+  height: 44%;
+  border-left: 1px solid var(--color-sage);
+  border-top: 1px solid var(--color-sage);
+}
+
+@media (max-width: 760px) {
+  .online-visual {
+    width: 88%;
+    max-width: 380px;
+    justify-self: center;
+  }
+}
+
+/* ---------- Online lesson: plans stay side by side on phones ---------- */
+
+@media (max-width: 720px) {
+  .online-plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .online-plan {
+    padding: 22px 14px 20px;
+  }
+  .online-plan__tag {
+    margin-bottom: 8px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .online-plan__name {
+    font-size: 13px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .online-plan__price {
+    flex-wrap: wrap;
+    gap: 2px 4px;
+    margin: 12px 0 16px;
+    padding-bottom: 14px;
+    font-size: 1.55rem;
+  }
+  .online-plan__price span {
+    font-size: 11px;
+  }
+  .online-plan .section__lead {
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 14px !important;
+  }
+  .online-plan__list {
+    gap: 8px;
+  }
+  .online-plan__list li {
+    padding-left: 18px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .online-plan__list li::before {
+    left: 0;
+    width: 9px;
+    height: 5px;
+  }
+}
+
+/* ---------- Online lesson: live instructor chips with faces ---------- */
+
+.chip--face {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 16px 5px 5px;
+}
+
+.chip--face img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs__tile.is-active::before,
+  .cs__hud-dot,
+  .online-visual__live::before {
+    animation: none;
+  }
+  .cs.is-ready .cs__panel.is-active *,
+  .cs__stage.is-flash::after {
+    animation: none !important;
+  }
+}

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&family=Tenor+Sans&family=Playfair+Display:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=1791032174">
+<link rel="stylesheet" href="css/style.css?v=1791033633">
 </head>
 <body>
 
@@ -50,6 +50,7 @@
       <li><a href="index.html">HOME</a></li>
       <li><a href="plan.html">PRICE</a></li>
       <li><a href="lesson.html">LESSON</a></li>
+      <li><a href="instructors.html">INSTRUCTOR</a></li>
       <li><a href="online-lesson.html" class="is-current">ONLINE LESSON</a></li>
       <li><a href="access.html">ACCESS</a></li>
       <li><a href="faq.html">FAQ</a></li>
@@ -74,7 +75,22 @@
   <section class="section">
     <div class="container">
       <div class="split">
-        <figure class="split__photo split__photo--wide reveal"><img src="assets/online-split.webp?v=1790611136" alt="ノートパソコンの前でストレッチをする女性" loading="lazy"></figure>
+        <figure class="online-visual reveal" aria-label="オンラインライブレッスンのイメージ">
+          <div class="online-visual__screen">
+            <div class="online-visual__bar"><span class="online-visual__live">LIVE</span><span>THU 20:30</span></div>
+            <div class="online-visual__main">
+              <img src="assets/logo-circle.webp" alt="" width="96" height="96" loading="lazy">
+              <p class="online-visual__title">Online Pilates</p>
+              <p class="online-visual__time">EVERY THURSDAY</p>
+            </div>
+            <div class="online-visual__people">
+              <img src="assets/miyako.webp" alt="" loading="lazy">
+              <img src="assets/instructor-mariko.webp?v=1791032174" alt="" loading="lazy">
+              <img src="assets/instructor-rika.webp?v=1791032174" alt="" loading="lazy">
+            </div>
+          </div>
+          <div class="online-visual__base"></div>
+        </figure>
         <div class="reveal" style="--reveal-delay:0.15s;">
           <p class="section__eyebrow">ONLINE LESSON</p>
           <h2 class="split__title split__title--serif">自分のペースで、<br>身体を整える。</h2>
@@ -170,9 +186,9 @@
 
       <p class="section__eyebrow" style="margin-top:56px;">INSTRUCTOR</p>
       <div class="chip-list reveal" style="justify-content:center; display:flex; flex-wrap:wrap; gap:12px;">
-        <span class="chip">Miyako</span>
-        <span class="chip">Mariko</span>
-        <span class="chip">Rika</span>
+        <a class="chip chip--face" href="instructors.html#miyako"><img src="assets/miyako.webp" alt="" loading="lazy">Miyako</a>
+        <a class="chip chip--face" href="instructors.html#mariko"><img src="assets/instructor-mariko.webp?v=1791032174" alt="" loading="lazy">Mariko</a>
+        <a class="chip chip--face" href="instructors.html#rika"><img src="assets/instructor-rika.webp?v=1791032174" alt="" loading="lazy">Rika</a>
       </div>
       <p class="section__lead" style="margin-top:20px; margin-bottom:0;">3名のインストラクターが担当します。</p>
     </div>
@@ -261,6 +277,7 @@
         <a href="index.html">HOME</a>
         <a href="plan.html">PRICE</a>
         <a href="lesson.html">LESSON</a>
+        <a href="instructors.html">INSTRUCTOR</a>
         <a href="online-lesson.html">ONLINE LESSON</a>
         <a href="access.html">ACCESS</a>
         <a href="faq.html">FAQ</a>
@@ -288,6 +305,6 @@
 
 </div>
 
-<script src="js/main.js?v=1791032174"></script>
+<script src="js/main.js?v=1791033633"></script>
 </body>
 </html>
