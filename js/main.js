@@ -336,3 +336,78 @@ document.addEventListener("DOMContentLoaded", () => {
   apply();
 });
 
+// Instructors page: pick a thumbnail and that instructor's profile opens large.
+// Thumbnails act as tabs; PREV/NEXT, arrow keys and the URL hash also switch.
+document.addEventListener("DOMContentLoaded", () => {
+  const sc = document.querySelector("[data-showcase]");
+  if (!sc) return;
+
+  const thumbs = [...sc.querySelectorAll("[data-sc-tile]")];
+  const strip = sc.querySelector(".showcase__strip");
+  const stage = sc.querySelector("[data-sc-stage]");
+  const bar = sc.querySelector("[data-sc-bar]");
+  const ids = thumbs.map((t) => t.dataset.scTile);
+  let index = 0;
+
+  const select = (i, { focus = false, scroll = false } = {}) => {
+    index = (i + ids.length) % ids.length;
+    const id = ids[index];
+    thumbs.forEach((t, n) => {
+      const on = n === index;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+    });
+    sc.querySelectorAll(".showcase__panel").forEach((p) => p.classList.toggle("is-active", p.id === id));
+    bar.style.setProperty("--progress", `${((index + 1) / ids.length) * 100}%`);
+    history.replaceState(null, "", `#${id}`);
+
+    // Keep the chosen thumbnail centred when the strip scrolls sideways (phones).
+    const t = thumbs[index];
+    if (strip.scrollWidth > strip.clientWidth) {
+      const delta = t.getBoundingClientRect().left - strip.getBoundingClientRect().left;
+      strip.scrollTo({ left: strip.scrollLeft + delta - (strip.clientWidth - t.offsetWidth) / 2, behavior: "smooth" });
+    }
+    if (focus) t.focus({ preventScroll: true });
+
+    if (scroll) {
+      const header = document.querySelector(".site-header");
+      const offset = (header ? header.offsetHeight : 64) + 12;
+      const top = stage.getBoundingClientRect().top;
+      if (top < offset || top > window.innerHeight * 0.6) {
+        window.scrollTo({ top: window.scrollY + top - offset, behavior: "smooth" });
+      }
+    }
+  };
+
+  thumbs.forEach((thumb, n) => {
+    thumb.addEventListener("click", () => select(n, { scroll: true }));
+    thumb.addEventListener("keydown", (e) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (step === undefined) return;
+      e.preventDefault();
+      select(index + step, { focus: true });
+    });
+  });
+
+  sc.querySelector("[data-sc-prev]").addEventListener("click", () => select(index - 1, { scroll: true }));
+  sc.querySelector("[data-sc-next]").addEventListener("click", () => select(index + 1, { scroll: true }));
+
+  window.addEventListener("hashchange", () => {
+    const n = ids.indexOf(decodeURIComponent(location.hash.slice(1)));
+    if (n >= 0) select(n, { scroll: true });
+  });
+
+  sc.classList.add("is-ready");
+  const hadHash = Boolean(location.hash);
+  const fromHash = ids.indexOf(decodeURIComponent(location.hash.slice(1)));
+  select(Math.max(fromHash, 0));
+  if (fromHash > 0) {
+    requestAnimationFrame(() => {
+      const header = document.querySelector(".site-header");
+      window.scrollTo({ top: strip.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 64) - 16 });
+    });
+  } else if (!hadHash) {
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+});
