@@ -3687,11 +3687,45 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 .statement__grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: end;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: start;
   gap: 72px;
-  max-width: 980px;
+  max-width: 1040px;
   margin: 0 auto;
+}
+
+.statement__head {
+  position: sticky;
+  top: calc(var(--header-height) + 40px);
+}
+
+.statement__text + .statement__text {
+  margin-top: 16px;
+}
+
+.statement__text strong {
+  font-weight: 700;
+  color: var(--color-sage);
+}
+
+.statement__karte {
+  display: flex;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 24px 26px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(39, 134, 61, 0.25);
+}
+
+.statement__karte .icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+}
+
+.statement__karte p {
+  font-size: 14px;
+  line-height: 2;
 }
 
 .statement__copy {
@@ -3780,7 +3814,22 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   .statement__copy {
     padding: 0;
     border-left: none;
+  }
+  .statement__lead {
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
     text-align: center;
+  }
+  .statement__karte {
+    gap: 14px;
+    padding: 20px 18px;
+  }
+  .statement__karte .icon {
+    width: 32px;
+    height: 32px;
+  }
+  .statement__head {
+    position: static;
   }
   .statement__quote {
     display: inline-block;
