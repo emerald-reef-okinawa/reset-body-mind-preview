@@ -3281,6 +3281,32 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   transition: background 0.35s ease, color 0.35s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.instructor {
+  width: 104px;
+}
+
+.instructor__mark {
+  width: 96px;
+  height: 96px;
+  font-size: 34px;
+  overflow: hidden;
+}
+
+.instructor__mark--photo {
+  padding: 3px;
+}
+
+.instructor__mark--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.instructor:hover .instructor__mark--photo {
+  background: var(--color-sage);
+}
+
 .instructor:hover .instructor__mark {
   background: var(--color-sage);
   color: #fff;
