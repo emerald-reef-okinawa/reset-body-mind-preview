@@ -3729,7 +3729,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 }
 
 .statement__map {
-  margin: 36px 0 0;
+  max-width: 440px;
+  margin: 32px 0 0;
   padding: 12px;
   background: #fff;
   box-shadow: 0 18px 40px rgba(20, 56, 58, 0.08);
