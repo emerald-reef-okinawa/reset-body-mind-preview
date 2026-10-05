@@ -4328,8 +4328,6 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   overflow: hidden;
   transform: skewX(-6deg);
   isolation: isolate;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
   box-shadow: 18px 18px 0 rgba(143, 224, 166, 0.22), 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 
@@ -4599,9 +4597,6 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  isolation: isolate;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 .gs__thumb-img img {
@@ -4709,14 +4704,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
     gap: 36px;
   }
   .gs__roster {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding: 20px 16px 8px;
-    margin: 24px -24px 0;
-    scrollbar-width: none;
-  }
-  .gs__roster::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    row-gap: 30px;
   }
   .gs__progress {
     left: 56px;
@@ -4731,16 +4720,29 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   }
   .gs__roster {
     order: -1;
-    margin: 0 -24px 8px;
-    gap: 10px;
-    padding: 22px 24px 10px;
+    margin: 0 0 8px;
+    gap: 28px 8px;
+    padding: 22px 4px 10px;
   }
   .gs__thumb {
-    flex-basis: 76px;
-    height: 98px;
+    flex: 0 0 calc((100% - 32px) / 5);
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+  .gs__thumb-no {
+    top: 4px;
+    left: 7px;
+    font-size: 9px;
+  }
+  .gs__thumb-name {
+    bottom: 5px;
+    font-size: 8px;
+    letter-spacing: 0.06em;
   }
   .gs__thumb.is-active .gs__thumb-no::before {
-    left: 20px;
+    top: -20px;
+    left: 12px;
+    border-width: 6px;
   }
   .gs__hint {
     order: -1;
