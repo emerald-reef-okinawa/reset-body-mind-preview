@@ -474,10 +474,24 @@ main {
   white-space: nowrap;
 }
 
+/* Each photo sits in a box 64% of the frame wide (left box for the first, right
+   box for the second) instead of the full width, so the portrait shots are not
+   blown up past their native size and more of each room stays in view. The
+   divider is kept between 36% and 64% so the boxes always cover the frame. */
 .hero__panel img {
-  width: 100%;
+  position: absolute;
+  top: 0;
+  width: 64%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero__panel:nth-child(1) img {
+  left: 0;
+}
+
+.hero__panel:nth-child(2) img {
+  right: 0;
 }
 
 .hero__panel--placeholder {
@@ -2196,7 +2210,7 @@ body {
 }
 
 @keyframes hero-kenburns {
-  from { scale: 1.12; }
+  from { scale: 1.04; }
   to { scale: 1; }
 }
 
@@ -4226,15 +4240,15 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   }
 }
 
-/* ---------- Instructors page: game-style member select ---------- */
+/* ---------- Instructors page: game-style member select (white base) ---------- */
 
 .gs {
   position: relative;
   overflow: hidden;
   background:
-    repeating-linear-gradient(115deg, rgba(143, 224, 166, 0.035) 0 1px, transparent 1px 26px),
-    radial-gradient(ellipse at 30% 40%, rgba(39, 134, 61, 0.35), transparent 60%),
-    var(--color-accent);
+    repeating-linear-gradient(115deg, rgba(39, 134, 61, 0.045) 0 1px, transparent 1px 26px),
+    radial-gradient(ellipse at 30% 40%, rgba(226, 253, 233, 0.9), transparent 60%),
+    #fff;
 }
 
 /* Big diagonal light band behind everything */
@@ -4245,7 +4259,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   right: -8%;
   width: 46%;
   height: 140%;
-  background: linear-gradient(180deg, rgba(143, 224, 166, 0.16), rgba(143, 224, 166, 0));
+  background: linear-gradient(180deg, rgba(226, 253, 233, 0.95), rgba(226, 253, 233, 0));
   transform: skewX(-18deg);
   pointer-events: none;
 }
@@ -4269,7 +4283,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   bottom: 0;
   left: -30%;
   width: 18%;
-  background: linear-gradient(90deg, transparent, rgba(143, 224, 166, 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(39, 134, 61, 0.14), transparent);
   transform: skewX(-18deg);
   opacity: 0;
   pointer-events: none;
@@ -4314,7 +4328,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-style: italic;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(143, 224, 166, 0.45);
+  -webkit-text-stroke: 1px rgba(39, 134, 61, 0.35);
   white-space: nowrap;
   pointer-events: none;
 }
@@ -4328,7 +4342,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   overflow: hidden;
   transform: skewX(-6deg);
   isolation: isolate;
-  box-shadow: 18px 18px 0 rgba(143, 224, 166, 0.22), 0 30px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 18px 18px 0 rgba(39, 134, 61, 0.16), 0 30px 60px rgba(20, 56, 58, 0.18);
 }
 
 .gs__photo img {
@@ -4348,7 +4362,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   bottom: 46px;
   left: 18%;
   right: 4%;
-  border: 1px solid rgba(143, 224, 166, 0.6);
+  border: 1px solid rgba(39, 134, 61, 0.5);
   transform: skewX(-6deg);
 }
 
@@ -4361,15 +4375,15 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-size: clamp(4.5rem, 8vw, 6.6rem);
   font-style: italic;
   line-height: 0.8;
-  color: #8fe0a6;
-  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  color: var(--color-sage);
+  text-shadow: 0 4px 18px rgba(255, 255, 255, 0.8);
 }
 
 /* Info */
 .gs__info {
   position: relative;
   z-index: 1;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .gs__kicker {
@@ -4379,19 +4393,19 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-family: var(--font-en);
   font-size: 12px;
   letter-spacing: 0.3em;
-  color: #8fe0a6;
+  color: var(--color-sage);
 }
 
 .gs__kicker::before {
   content: "";
   width: 28px;
   height: 10px;
-  background: #8fe0a6;
+  background: var(--color-sage);
   transform: skewX(-24deg);
 }
 
 .gs__kicker span {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(20, 56, 58, 0.4);
 }
 
 .gs__name {
@@ -4401,8 +4415,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-style: italic;
   font-weight: 500;
   line-height: 0.95;
-  color: #fff;
-  text-shadow: 3px 3px 0 rgba(143, 224, 166, 0.22);
+  color: var(--color-accent);
+  text-shadow: 3px 3px 0 rgba(39, 134, 61, 0.16);
 }
 
 .gs__chars {
@@ -4419,15 +4433,15 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   margin-top: 14px;
   font-size: 12px;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-muted);
 }
 
 .gs__catch {
   position: relative;
   margin-top: 26px;
   padding: 18px 22px 18px 24px;
-  border-left: 3px solid #8fe0a6;
-  background: rgba(255, 255, 255, 0.07);
+  border-left: 3px solid var(--color-sage);
+  background: var(--color-sage-bg);
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
   font-family: var(--font-jp-heading);
   font-size: clamp(1.05rem, 1.9vw, 1.3rem);
@@ -4438,7 +4452,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 .gs__spec {
   margin: 24px 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(20, 56, 58, 0.14);
 }
 
 .gs__spec > div {
@@ -4447,14 +4461,14 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   justify-content: space-between;
   gap: 16px;
   padding: 11px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(20, 56, 58, 0.14);
 }
 
 .gs__spec dt {
   font-family: var(--font-en);
   font-size: 10px;
   letter-spacing: 0.24em;
-  color: #8fe0a6;
+  color: var(--color-sage);
 }
 
 .gs__spec dd {
@@ -4462,7 +4476,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-family: var(--font-hero);
   font-size: 1.15rem;
   text-align: right;
-  color: #fff;
+  color: var(--color-accent);
 }
 
 .gs__spec small,
@@ -4470,7 +4484,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-family: var(--font-jp);
   font-size: 12px;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-muted);
 }
 
 .gs__bio {
@@ -4479,7 +4493,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   margin-top: 22px;
   font-size: 13.5px;
   line-height: 2;
-  color: rgba(255, 255, 255, 0.76);
+  color: #4f5a5a;
 }
 
 .gs__qa {
@@ -4493,12 +4507,12 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .gs__qa dt::before {
   content: "▸ ";
-  color: #8fe0a6;
+  color: var(--color-sage);
 }
 
 .gs__qa dd {
@@ -4507,9 +4521,9 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 .gs__soon {
   padding: 14px 18px;
-  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border: 1px dashed rgba(20, 56, 58, 0.25);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-muted);
 }
 
 /* Side arrows */
@@ -4522,9 +4536,9 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   width: 48px;
   height: 64px;
   padding: 0;
-  border: 1px solid rgba(143, 224, 166, 0.6);
-  background: rgba(20, 56, 58, 0.6);
-  color: #8fe0a6;
+  border: 1px solid rgba(39, 134, 61, 0.6);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-sage);
   font-size: 30px;
   line-height: 1;
   cursor: pointer;
@@ -4548,8 +4562,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 .gs__arrow:hover,
 .gs__arrow:focus-visible {
-  background: #8fe0a6;
-  color: var(--color-accent);
+  background: var(--color-sage);
+  color: #fff;
   outline: none;
 }
 
@@ -4559,15 +4573,15 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   right: 72px;
   bottom: 8px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(20, 56, 58, 0.12);
 }
 
 .gs__progress span {
   position: absolute;
   inset: 0 auto 0 0;
   width: var(--progress, 11.1%);
-  background: #8fe0a6;
-  box-shadow: 0 0 10px rgba(143, 224, 166, 0.7);
+  background: var(--color-sage);
+  box-shadow: 0 0 10px rgba(39, 134, 61, 0.45);
   transition: width 0.6s cubic-bezier(0.77, 0, 0.18, 1);
 }
 
@@ -4585,7 +4599,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   flex: 0 0 96px;
   height: 124px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(20, 56, 58, 0.15);
   background: #0d2526;
   cursor: pointer;
   transform: skewX(-8deg);
@@ -4647,7 +4661,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 
 .gs__thumb:hover,
 .gs__thumb:focus-visible {
-  border-color: rgba(143, 224, 166, 0.8);
+  border-color: rgba(39, 134, 61, 0.8);
 }
 
 .gs__thumb:hover .gs__thumb-img img,
@@ -4656,8 +4670,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 }
 
 .gs__thumb.is-active {
-  border: 2px solid #8fe0a6;
-  box-shadow: 0 0 0 4px rgba(143, 224, 166, 0.18), 0 12px 30px rgba(143, 224, 166, 0.3);
+  border: 2px solid var(--color-sage);
+  box-shadow: 0 0 0 4px rgba(39, 134, 61, 0.15), 0 12px 30px rgba(39, 134, 61, 0.28);
   transform: skewX(-8deg) translateY(-8px);
 }
 
@@ -4672,7 +4686,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   top: -22px;
   left: 28px;
   border: 7px solid transparent;
-  border-top-color: #8fe0a6;
+  border-top-color: var(--color-sage);
   animation: gs-bob 1.2s ease-in-out infinite;
 }
 
@@ -4681,7 +4695,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-muted);
 }
 
 /* The entrance motion for a member is driven from main.js (Web Animations) so the

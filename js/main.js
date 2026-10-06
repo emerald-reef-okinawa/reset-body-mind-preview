@@ -313,7 +313,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const moveTo = (clientX) => {
     const rect = hero.getBoundingClientRect();
-    target = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    // Stay within 36–64%: each photo only fills a 64%-wide box (see .hero__panel img).
+    target = Math.min(64, Math.max(36, ((clientX - rect.left) / rect.width) * 100));
     if (reduceMotion) {
       current = target;
       apply();
