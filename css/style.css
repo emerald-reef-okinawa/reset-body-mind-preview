@@ -495,6 +495,64 @@ main {
   right: 0;
 }
 
+/* Labels for the two photos; the side that is opening up brightens and its
+   rule lengthens, so moving the divider reads as choosing a space. */
+.hero__label {
+  position: absolute;
+  top: 28px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.hero__label::before {
+  content: "";
+  height: 1px;
+  background: currentColor;
+}
+
+.hero__label--left {
+  left: 36px;
+  opacity: calc(0.45 + var(--t, 0.5) * 0.55);
+}
+
+.hero__label--left::before {
+  width: calc(16px + var(--t, 0.5) * 32px);
+}
+
+.hero__label--right {
+  right: 36px;
+  flex-direction: row-reverse;
+  opacity: calc(1 - var(--t, 0.5) * 0.55);
+}
+
+.hero__label--right::before {
+  width: calc(48px - var(--t, 0.5) * 32px);
+}
+
+@media (max-width: 760px) {
+  .hero__label {
+    top: 18px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .hero__label--left {
+    left: 16px;
+  }
+  .hero__label--right {
+    right: 16px;
+  }
+}
+
 .hero__panel--placeholder {
   background: repeating-linear-gradient(
     135deg,

@@ -302,7 +302,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let current = 50;
   let frame = null;
 
-  const apply = () => hero.style.setProperty("--split", `${current.toFixed(2)}%`);
+  // The divider stays between 36% and 64% (each photo only fills a fixed
+  // 64%-wide box, see .hero__panel img), but the whole width of the hero maps
+  // onto that range, so the line keeps gliding with the cursor right up to the
+  // edge instead of stopping partway. --t (0–1) drives the photo labels.
+  const MIN = 36;
+  const MAX = 64;
+
+  const apply = () => {
+    hero.style.setProperty("--split", `${current.toFixed(2)}%`);
+    hero.style.setProperty("--t", ((current - MIN) / (MAX - MIN)).toFixed(3));
+  };
 
   const tick = () => {
     current += (target - current) * 0.14;
@@ -313,8 +323,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const moveTo = (clientX) => {
     const rect = hero.getBoundingClientRect();
-    // Stay within 36–64%: each photo only fills a fixed 64%-wide box (see .hero__panel img).
-    target = Math.min(64, Math.max(36, ((clientX - rect.left) / rect.width) * 100));
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    target = MIN + ratio * (MAX - MIN);
     if (reduceMotion) {
       current = target;
       apply();
