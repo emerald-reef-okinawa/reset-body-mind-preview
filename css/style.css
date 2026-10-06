@@ -474,10 +474,11 @@ main {
   white-space: nowrap;
 }
 
-/* Each photo sits in a box at least 64% of the frame wide (left box for the
-   first, right box for the second) rather than the full width, so at rest the
-   portrait shots are not blown up and more of each room stays in view. When the
-   divider travels past 64% the box grows with it, so it can go edge to edge. */
+/* Each photo sits in a fixed box 64% of the frame wide (left box for the
+   first, right box for the second) instead of the full width, so the portrait
+   shots are not blown up past their native size and more of each room stays in
+   view. The divider is kept between 36% and 64% (main.js) so the boxes always
+   cover the frame without any zooming. */
 .hero__panel img {
   position: absolute;
   top: 0;
@@ -488,12 +489,10 @@ main {
 
 .hero__panel:nth-child(1) img {
   left: 0;
-  width: max(64%, var(--split));
 }
 
 .hero__panel:nth-child(2) img {
   right: 0;
-  width: max(64%, calc(100% - var(--split)));
 }
 
 .hero__panel--placeholder {
