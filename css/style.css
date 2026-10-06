@@ -474,10 +474,10 @@ main {
   white-space: nowrap;
 }
 
-/* Each photo sits in a box 64% of the frame wide (left box for the first, right
-   box for the second) instead of the full width, so the portrait shots are not
-   blown up past their native size and more of each room stays in view. The
-   divider is kept between 36% and 64% so the boxes always cover the frame. */
+/* Each photo sits in a box at least 64% of the frame wide (left box for the
+   first, right box for the second) rather than the full width, so at rest the
+   portrait shots are not blown up and more of each room stays in view. When the
+   divider travels past 64% the box grows with it, so it can go edge to edge. */
 .hero__panel img {
   position: absolute;
   top: 0;
@@ -488,10 +488,12 @@ main {
 
 .hero__panel:nth-child(1) img {
   left: 0;
+  width: max(64%, var(--split));
 }
 
 .hero__panel:nth-child(2) img {
   right: 0;
+  width: max(64%, calc(100% - var(--split)));
 }
 
 .hero__panel--placeholder {
@@ -4246,22 +4248,8 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   position: relative;
   overflow: hidden;
   background:
-    repeating-linear-gradient(115deg, rgba(39, 134, 61, 0.045) 0 1px, transparent 1px 26px),
-    radial-gradient(ellipse at 30% 40%, rgba(226, 253, 233, 0.9), transparent 60%),
+    repeating-linear-gradient(115deg, rgba(20, 56, 58, 0.025) 0 1px, transparent 1px 28px),
     #fff;
-}
-
-/* Big diagonal light band behind everything */
-.gs::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  right: -8%;
-  width: 46%;
-  height: 140%;
-  background: linear-gradient(180deg, rgba(226, 253, 233, 0.95), rgba(226, 253, 233, 0));
-  transform: skewX(-18deg);
-  pointer-events: none;
 }
 
 .gs__container {
@@ -4441,7 +4429,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   margin-top: 26px;
   padding: 18px 22px 18px 24px;
   border-left: 3px solid var(--color-sage);
-  background: var(--color-sage-bg);
+  background: #f4faf6;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
   font-family: var(--font-jp-heading);
   font-size: clamp(1.05rem, 1.9vw, 1.3rem);
