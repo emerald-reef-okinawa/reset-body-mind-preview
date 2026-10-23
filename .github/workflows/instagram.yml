@@ -1,0 +1,69 @@
+name: Instagram feed
+
+# Every morning at 6:00 (JST), pull the latest posts into the site.
+# Can also be run by hand from the Actions tab.
+on:
+  schedule:
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: instagram-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pillow
+
+      - name: Fetch latest posts
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/fetch_instagram.py
+
+      # The long-lived token lasts 60 days. On the 1st and 15th (JST) swap it
+      # for a fresh one and store it, so it never expires. Needs the
+      # GH_SECRETS_TOKEN secret: a fine-grained token with
+      # "Secrets: read and write" on this repository.
+      - name: Refresh access token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: |
+          day=$(TZ=Asia/Tokyo date +%d)
+          if [ "$day" != "01" ] && [ "$day" != "15" ]; then
+            echo "Not a refresh day"; exit 0
+          fi
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::GH_SECRETS_TOKEN is not set, so the Instagram token is not refreshed automatically."
+            exit 0
+          fi
+          new=$(curl -fsS "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_ACCESS_TOKEN}"             | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")             || { echo "::warning::Token refresh failed; will retry on the next refresh day."; exit 0; }
+          echo "::add-mask::$new"
+          gh secret set IG_ACCESS_TOKEN --repo "${{ github.repository }}" --body "$new"
+          echo "Token refreshed"
+
+      - name: Commit and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add index.html assets/instagram
+          if git diff --cached --quiet; then
+            echo "No new posts"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update Instagram feed"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
