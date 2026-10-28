@@ -5005,3 +5005,15 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
     height: 38px;
   }
 }
+
+/* ---------- Hero: one photo (mat space) ---------- */
+
+.hero--single {
+  cursor: auto;
+}
+
+.hero--single .hero__panel img {
+  left: 0;
+  width: 100%;
+  object-position: 50% 58%;
+}
