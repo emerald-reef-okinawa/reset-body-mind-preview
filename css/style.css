@@ -4784,7 +4784,7 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
     padding: 22px 4px 10px;
   }
   .gs__thumb {
-    flex: 0 0 calc((100% - 32px) / 5);
+    flex: 0 0 calc((100% - 30px) / 4);
     height: auto;
     aspect-ratio: 3 / 4;
   }
@@ -4867,3 +4867,59 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   display: none;
 }
 
+
+/* ---------- Home: before / after cards (whole photo shown, never cropped) ---------- */
+
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.ba-card {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 14px 36px rgba(20, 56, 58, 0.08);
+}
+
+.ba-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ba-card__tag {
+  position: absolute;
+  bottom: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: #fff;
+  pointer-events: none;
+}
+
+.ba-card__tag--before {
+  left: 12px;
+  background: rgba(20, 56, 58, 0.72);
+}
+
+.ba-card__tag--after {
+  right: 12px;
+  background: var(--color-sage);
+}
+
+@media (max-width: 640px) {
+  .ba-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    max-width: 440px;
+  }
+}
