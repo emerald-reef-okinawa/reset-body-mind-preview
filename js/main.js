@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const drawer = document.querySelector("[data-nav-drawer]");
   const floating = document.querySelector(".floating-cta");
+  const lineButton = document.querySelector(".floating-line");
   const footer = document.querySelector(".site-footer");
   let lastY = window.scrollY;
   let ticking = false;
@@ -241,6 +242,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // On desktop the pill joins once the visitor starts scrolling; the hero
     // already carries its own reserve button in the first view.
     if (floating) floating.classList.toggle("is-shown", y > 160 && !atFooter);
+    // The LINE button stays from the first view so a question is always one tap away.
+    if (lineButton) lineButton.classList.toggle("is-hidden", atFooter);
 
     if (header) {
       header.classList.toggle("is-scrolled", y > 10);
