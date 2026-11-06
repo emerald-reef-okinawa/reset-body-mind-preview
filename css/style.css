@@ -4924,6 +4924,72 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   }
 }
 
+/* Cases: one customer per row group, each angle as its own before / after pair. */
+.ba-cases {
+  display: grid;
+  gap: 56px;
+  max-width: 920px;
+  margin: 72px auto 0;
+}
+
+.ba-case__label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 20px;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+}
+
+.ba-case__label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(20, 56, 58, 0.18);
+}
+
+.ba-case__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.ba-case__grid .ba-card {
+  flex: 0 0 calc((100% - 28px) / 2);
+}
+
+.ba-card__view {
+  padding: 10px 0 12px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+}
+
+/* Feet matter in these posture shots, so the tags move to the top edge. */
+.ba-case .ba-card__tag {
+  top: 12px;
+  bottom: auto;
+}
+
+@media (max-width: 640px) {
+  .ba-cases {
+    gap: 40px;
+    max-width: 440px;
+    margin-top: 48px;
+  }
+  .ba-case__grid {
+    gap: 20px;
+  }
+  .ba-case__grid .ba-card {
+    flex-basis: 100%;
+  }
+}
+
 /* ---------- Floating LINE button ---------- */
 
 .floating-line {
