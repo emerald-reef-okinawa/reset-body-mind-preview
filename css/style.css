@@ -4978,17 +4978,26 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
 }
 
 .ba-case__label {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  display: block;
   padding: 20px 24px;
   cursor: pointer;
   list-style: none;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.ba-case__label::-webkit-details-marker {
+.ba-case__label::-webkit-details-marker,
+.ba-case__label::marker {
   display: none;
+  content: "";
+}
+
+/* Older iOS Safari will not lay out <summary> as a flex box, so the row lives on an inner span. */
+.ba-case__bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .ba-case__no {
@@ -5092,8 +5101,10 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
     margin-top: 40px;
   }
   .ba-case__label {
-    gap: 14px;
     padding: 16px 16px 16px 18px;
+  }
+  .ba-case__bar {
+    gap: 14px;
   }
   .ba-case__grid {
     gap: 16px;
