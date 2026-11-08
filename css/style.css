@@ -3884,47 +3884,6 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   color: var(--color-muted);
 }
 
-.statement__tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 72px;
-  border-top: 1px solid rgba(39, 134, 61, 0.3);
-  border-bottom: 1px solid rgba(39, 134, 61, 0.3);
-}
-
-.statement__tags li {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 22px 26px;
-  font-family: var(--font-jp-heading);
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
-}
-
-.statement__tags li::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-sage);
-}
-
-.statement__tags li + li::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 1px;
-  height: 22px;
-  translate: 0 -50%;
-  background: rgba(39, 134, 61, 0.3);
-}
-
 @media (max-width: 760px) {
   .statement__grid {
     grid-template-columns: 1fr;
@@ -3968,23 +3927,97 @@ html:has(.intro-overlay) .hero__panel:nth-child(2)::after {
   }
 }
 
-/* Below desktop width the five keywords wrap, so drop the ruled row for pills. */
-@media (max-width: 1000px) {
-  .statement__tags {
-    gap: 10px;
+/* Effects: upper / lower body, each a card of keyword pills. */
+.effects {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  margin-top: 72px;
+}
+
+.effects__title {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 4px;
+  font-family: var(--font-jp-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.effects__title::before,
+.effects__title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(39, 134, 61, 0.3);
+}
+
+.effects__group {
+  padding: 28px 30px 30px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(39, 134, 61, 0.22);
+}
+
+.effects__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(39, 134, 61, 0.2);
+  font-family: var(--font-jp-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+.effects__en {
+  order: 2;
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+.effects__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.effects__list li {
+  padding: 8px 16px;
+  border: 1px solid rgba(39, 134, 61, 0.35);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+}
+
+@media (max-width: 860px) {
+  .effects {
+    grid-template-columns: 1fr;
+    gap: 18px;
     margin-top: 48px;
-    padding: 0;
-    border: none;
   }
-  .statement__tags li {
-    padding: 9px 16px;
-    border: 1px solid rgba(39, 134, 61, 0.35);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.55);
+  .effects__group {
+    padding: 22px 20px 24px;
+  }
+  .effects__list {
+    gap: 8px;
+  }
+  .effects__list li {
+    padding: 7px 14px;
     font-size: 13px;
-  }
-  .statement__tags li + li::after {
-    display: none;
   }
 }
 
