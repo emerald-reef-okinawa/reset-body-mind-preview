@@ -203,8 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Scroll progress line, back-to-top button, and a header that tucks away
-  // while scrolling down and returns when scrolling up.
+  // Scroll progress line, the floating LINE / booking buttons, and a header
+  // that tucks away while scrolling down and returns when scrolling up.
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const progress = document.createElement("div");
@@ -212,20 +212,10 @@ document.addEventListener("DOMContentLoaded", () => {
   progress.setAttribute("aria-hidden", "true");
   document.body.appendChild(progress);
 
-  const toTop = document.createElement("button");
-  toTop.type = "button";
-  toTop.className = "back-to-top";
-  toTop.setAttribute("aria-label", "ページの先頭へ戻る");
-  toTop.innerHTML = '<span aria-hidden="true">&uarr;</span>';
-  document.body.appendChild(toTop);
-  toTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-  });
-
   const header = document.querySelector(".site-header");
   const drawer = document.querySelector("[data-nav-drawer]");
+  const actions = document.querySelector("[data-floating]");
   const floating = document.querySelector(".floating-cta");
-  const lineButton = document.querySelector(".floating-line");
   const footer = document.querySelector(".site-footer");
   let lastY = window.scrollY;
   let ticking = false;
@@ -235,15 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
-    // Both floating buttons step aside once the footer (which has its own
-    // PAGE TOP link) scrolls into view.
+    // The floating buttons step aside once the footer (which has its own
+    // PAGE TOP link and contact links) scrolls into view.
     const atFooter = footer && footer.getBoundingClientRect().top < window.innerHeight - 80;
-    toTop.classList.toggle("is-shown", y > 600 && !atFooter);
-    // On desktop the pill joins once the visitor starts scrolling; the hero
-    // already carries its own reserve button in the first view.
-    if (floating) floating.classList.toggle("is-shown", y > 160 && !atFooter);
-    // The LINE button stays from the first view so a question is always one tap away.
-    if (lineButton) lineButton.classList.toggle("is-hidden", atFooter);
+    if (actions) actions.classList.toggle("is-away", atFooter);
+    // On desktop the booking pill joins once the visitor starts scrolling; the
+    // hero already carries its own reserve button in the first view.
+    if (floating) floating.classList.toggle("is-shown", y > 160);
 
     if (header) {
       header.classList.toggle("is-scrolled", y > 10);
@@ -471,4 +459,21 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (!hadHash) {
     history.replaceState(null, "", location.pathname + location.search);
   }
+});
+
+// Home voices: on phones the cards swipe sideways; the dots show which one is in view.
+document.addEventListener("DOMContentLoaded", () => {
+  const list = document.querySelector(".voice-list");
+  const dots = document.querySelector("[data-voice-dots]");
+  if (!list || !dots) return;
+  const cards = [...list.children];
+  dots.innerHTML = cards.map(() => "<span></span>").join("");
+  const marks = [...dots.children];
+  const sync = () => {
+    const step = cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : 1;
+    const i = Math.min(cards.length - 1, Math.max(0, Math.round(list.scrollLeft / step)));
+    marks.forEach((m, k) => m.classList.toggle("is-active", k === i));
+  };
+  list.addEventListener("scroll", sync, { passive: true });
+  sync();
 });
