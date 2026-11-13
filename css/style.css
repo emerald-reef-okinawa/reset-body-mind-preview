@@ -1413,63 +1413,6 @@ main {
   font-size: 12px;
 }
 
-/* ---------- Instagram feed ---------- */
-
-.instagram-feed__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: start;
-}
-
-.ig-card {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-  background: #fff;
-}
-
-.ig-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0.4, 0, 1);
-}
-
-.ig-card:hover img {
-  transform: scale(1.04);
-}
-
-.ig-card__label {
-  display: block;
-  padding: 14px 16px;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-align: center;
-}
-
-.ig-card__label::after {
-  content: "→";
-  margin-left: 8px;
-  display: inline-block;
-  transition: transform 0.25s ease;
-}
-
-.ig-card:hover .ig-card__label::after {
-  transform: translateX(4px);
-}
-
-@media (max-width: 720px) {
-  .instagram-feed__grid {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: min(400px, 100%);
-    margin: 0 auto;
-  }
-}
-
 /* ---------- FAQ accordion ---------- */
 
 .faq-item {
@@ -5315,4 +5258,128 @@ body {
 /* Keeps a short phrase together so a heading never ends on an orphaned word. */
 .u-nobr {
   display: inline-block;
+}
+
+/* ---------- Home: Instagram as links to the two accounts (no embedded posts) ---------- */
+
+.instagram-follow__lead {
+  margin: -8px auto 36px;
+  max-width: 40em;
+  font-size: 14px;
+  line-height: 2;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.ig-accounts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.ig-account {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border: 1px solid rgba(20, 56, 58, 0.14);
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ig-account:hover {
+  border-color: var(--color-sage);
+  box-shadow: 0 14px 32px rgba(20, 56, 58, 0.08);
+  transform: translateY(-3px);
+}
+
+.ig-account__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-sage-bg);
+  color: var(--color-sage);
+}
+
+.ig-account__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ig-account__body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ig-account__role {
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: var(--color-sage);
+}
+
+.ig-account__name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.ig-account__handle {
+  font-family: var(--font-en);
+  font-size: 12px;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Round arrow button: the whole card is the link, this just shows where it goes. */
+.ig-account__cta {
+  position: relative;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.ig-account__cta::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid #fff;
+  border-right: 1.5px solid #fff;
+  translate: -65% -50%;
+  rotate: 45deg;
+}
+
+.ig-account:hover .ig-account__cta {
+  background: var(--color-sage);
+  transform: translateX(3px);
+}
+
+@media (max-width: 720px) {
+  .ig-accounts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    max-width: 440px;
+  }
+  .ig-account {
+    gap: 14px;
+    padding: 18px 16px;
+  }
+  .ig-account__icon {
+    width: 46px;
+    height: 46px;
+  }
 }
